@@ -1,7 +1,7 @@
 <template>
   <div :id="containerId" v-if="downloaded" />
   <div class="placeholder" v-else>
-    Downloading ...
+    Cargando ...
   </div>
 </template>
 

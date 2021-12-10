@@ -1,21 +1,29 @@
 import Phaser from 'phaser'
 import BootScene from '@/game/scenes/BootScene'
 import PlayScene from '@/game/scenes/PlayScene'
+import TestScene from "./scenes/TestScene";
+import PreLoadScene from "./scenes/PreLoadScene";
 
 function launch(containerId) {
   return new Phaser.Game({
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 900,
     parent: containerId,
     physics: {
-      default: 'arcade',
-      arcade: {
-        gravity: { y: 300 },
-        debug: false
+      default: 'matter',
+      matter: {
+        enableSleeping: false,
+        gravity: {
+          y: 1
+        },
+        debug: {
+          showBody: true,
+          showStaticBody: true
+        }
       }
     },
-    scene: [BootScene, PlayScene]
+    scene: [PreLoadScene, TestScene]
   })
 }
 
