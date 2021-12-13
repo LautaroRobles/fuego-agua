@@ -7,6 +7,20 @@ export default class PlayerController {
         this.physics = player.physics;
         this.input = player.scene.input;
         this.controller = new Controller(this.input);
+
+        this.onFloor = false;
+
+        this.configCollisions();
+    }
+    configCollisions() {
+        this.physics.body.parts[3].onCollideActiveCallback = (collision) => this.collisionFeetStart(collision)
+        this.physics.body.parts[3].onCollideEndCallback = (collision) => this.collisionFeetExit(collision)
+    }
+    collisionFeetStart(collision) {
+        this.onFloor = true
+    }
+    collisionFeetExit(collision) {
+        this.onFloor = false
     }
     preUpdate(time, delta) {
         if(this.controller.isRightPressed()) {
@@ -15,8 +29,8 @@ export default class PlayerController {
         if(this.controller.isLeftPressed()) {
             this.physics.applyForce(new Phaser.Math.Vector2(-this.player.acceleration, 0));
         }
-        if(this.controller.isUpPressed()) {
-            this.physics.setVelocityY(-5);
+        if(this.controller.isUpPressed() && this.onFloor) {
+            this.physics.setVelocityY(-7);
         }
 
         if(Math.abs(this.physics.body.velocity.x) > this.player.maxHVel) {
