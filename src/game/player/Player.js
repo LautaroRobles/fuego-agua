@@ -20,7 +20,7 @@ export default class Player extends PhysicsSprite {
         let spriteWidth = this.displayWidth;
         let spriteHeight = this.displayHeight;
 
-        let bodyRect = Bodies.rectangle(spriteWidth / 2, spriteHeight / 2 + spriteWidth / 4, spriteWidth, spriteHeight - spriteWidth / 2, {label: "MainBody"});
+        let bodyRect = Bodies.rectangle(spriteWidth / 2, spriteHeight / 2 + spriteWidth / 4, spriteWidth, spriteHeight - spriteWidth / 2, {label: "MainBody", chamfer: {radius: 10}});
         let headCircle = Bodies.circle(spriteWidth / 2, spriteWidth / 2, spriteWidth / 2, {label: "Head"});
         let feetRect = Bodies.rectangle(spriteWidth / 2, spriteHeight, spriteWidth - 4, 2, {label: "Feet"});
 

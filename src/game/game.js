@@ -16,12 +16,10 @@ function launch(containerId) {
         gravity: {
           y: 1
         },
-        /*
         debug: {
           showBody: true,
           showStaticBody: true
         }
-         */
       }
     },
     scene: [PreLoadScene, TestScene]
