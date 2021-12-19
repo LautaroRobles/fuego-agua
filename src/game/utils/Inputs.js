@@ -1,6 +1,6 @@
-export default class Controller {
-    constructor(input) {
-        this.input = input;
+export default class Inputs {
+    constructor(scene) {
+        this.input = scene.input;
 
         this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
         this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)

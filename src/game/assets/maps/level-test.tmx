@@ -1,56 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="64" tileheight="64" infinite="0" nextlayerid="2" nextobjectid="1">
  <editorsettings>
   <export target="level-test.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="bricks" tilewidth="32" tileheight="32" tilecount="33" columns="33">
-  <image source="../tilesets/bricks.png" width="1056" height="32"/>
-  <tile id="6">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="2" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="5">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="2" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="8">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="7">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
+ <tileset firstgid="1" name="base" tilewidth="64" tileheight="64" tilecount="8" columns="8">
+  <image source="../tilesets/base.png" width="512" height="64"/>
   <tile id="0">
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
+    <object id="2" x="0" y="31" width="64" height="33"/>
    </objectgroup>
   </tile>
   <tile id="1">
@@ -58,7 +18,27 @@
     <property name="collides" type="bool" value="true"/>
    </properties>
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
+    <object id="1" x="0" y="0" width="64" height="64"/>
+   </objectgroup>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="3">
+    <object id="2" x="0" y="0">
+     <polygon points="0,0 64,64 64,0"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="0">
+     <polygon points="0,0 0,64 64,0"/>
+    </object>
    </objectgroup>
   </tile>
   <tile id="4">
@@ -66,280 +46,74 @@
     <property name="collides" type="bool" value="true"/>
    </properties>
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
+    <object id="1" x="0" y="64">
+     <polygon points="0,0 64,0 64,-64"/>
+    </object>
    </objectgroup>
   </tile>
-  <tile id="2">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="9">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="10">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="11">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="12">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="13">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="17"/>
-   </objectgroup>
-  </tile>
-  <tile id="14">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="17"/>
-   </objectgroup>
-  </tile>
-  <tile id="15">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="15" width="32" height="17"/>
-   </objectgroup>
-  </tile>
-  <tile id="16">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="15" width="32" height="17"/>
-   </objectgroup>
-  </tile>
-  <tile id="17">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="18">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="32" height="32"/>
-   </objectgroup>
-  </tile>
-  <tile id="19">
+  <tile id="5">
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="0" y="0">
-     <polygon points="0,0 32,32 32,0"/>
+     <polygon points="0,0 0,64 64,64"/>
     </object>
    </objectgroup>
   </tile>
-  <tile id="20">
+  <tile id="6">
+   <properties>
+    <property name="collides" type="bool" value="true"/>
+   </properties>
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="64">
+     <polygon points="0,0 64,0 64,-64 0.0065972,-32.7326"/>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="7">
    <properties>
     <property name="collides" type="bool" value="true"/>
    </properties>
    <objectgroup draworder="index" id="2">
     <object id="1" x="0" y="0">
-     <polygon points="0,0 0,32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="21">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="3">
-    <object id="2" x="0" y="32">
-     <polygon points="0,0 32,-32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="22">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 32,32 0,32"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="23">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="32" y="0">
-     <polygon points="0,0 -15.125,15 -32,15 -32,32 0,32"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="24">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 0,32 32,32 32,14.875 14.75,15"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="25">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 32,32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="26">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 32,32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="27">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 0,32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="28">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 0,32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="29">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="2" x="0" y="32">
-     <polygon points="0,0 32,-32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="30">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="2" x="0" y="32">
-     <polygon points="0,0 32,-32 32,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="31">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 32,32 0,32"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="32">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 0,32 32,32"/>
+     <polygon points="0,0 0,64 64,64 63.9774,31.1225"/>
     </object>
    </objectgroup>
   </tile>
  </tileset>
- <layer id="1" name="layout" width="40" height="40">
+ <layer id="1" name="layout" width="40" height="30">
   <data encoding="csv">
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,4,23,26,18,18,29,0,0,0,0,0,0,0,0,0,0,0,0,22,23,0,0,4,5,0,0,0,0,0,0,0,0,
-13,0,0,0,0,0,0,0,11,9,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,20,21,0,0,2,3,0,0,0,0,0,0,0,22,
-13,0,0,0,0,0,0,0,11,12,9,19,19,19,19,19,19,19,19,25,17,17,24,5,0,0,0,0,0,0,0,0,0,0,4,25,17,17,24,8,
-9,25,17,24,19,19,19,19,8,12,12,12,12,12,12,12,12,12,12,12,12,12,12,9,25,17,17,17,17,17,17,17,17,24,8,12,12,12,12,12
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,2,2,2,8,1,1,1,1,1,1,7,2,2,2,2,2,2,2,2,2,2,2,2,8,1,1,1,1,1,1,7,2,2,2,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,8,1,1,1,7,2,6,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,2,0,0,0,2,2,2,2,2,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,6,0,0,2,
+2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,2,0,0,0,6,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,4,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,0,0,0,0,0,0,0,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,2,2,2,2,2,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,2,2,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,0,0,0,0,0,0,0,0,2,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,
+2,2,2,2,6,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,0,0,0,2,2,8,1,1,1,1,7,2,2,0,0,0,0,0,2,
+2,2,2,2,2,0,0,0,0,0,2,0,2,2,0,0,0,0,0,0,5,2,2,2,2,2,0,0,0,2,0,0,0,2,0,0,0,0,0,2,
+2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,2,2,2,2,2,0,0,0,0,0,2,
+2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,0,2,2,2,0,2,0,2,2,2,2,2,2,2,
+2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,0,0,0,0,2,0,2,0,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
 </data>
  </layer>
 </map>

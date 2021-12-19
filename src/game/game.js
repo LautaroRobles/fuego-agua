@@ -4,9 +4,9 @@ import PreLoadScene from "./scenes/PreLoadScene";
 
 function launch(containerId) {
   return new Phaser.Game({
-    type: Phaser.AUTO,
-    width: 1280,
-    height: 1280,
+    type: Phaser.WEBGL,
+    width: 2560,
+    height: 1920,
     backgroundColor: '#efefef',
     parent: containerId,
     physics: {
@@ -14,11 +14,11 @@ function launch(containerId) {
       matter: {
         enableSleeping: false,
         gravity: {
-          y: 1
+          y: 2
         },
         debug: {
           showBody: true,
-          showStaticBody: true
+          showStaticBody: false
         }
       }
     },
