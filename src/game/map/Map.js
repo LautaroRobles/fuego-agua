@@ -11,11 +11,16 @@ export default class Map {
         this.scene.matter.world.convertTilemapLayer(this.layer);
         this.scene.matter.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels, 32, true, true, false, true);
 
-        this.shader = this.scene.add.shader('map-shader', this.map.widthInPixels / 2, this.map.heightInPixels / 2, this.map.widthInPixels, this.map.heightInPixels);
+        this.mapShader = this.scene.add.shader('map-shader', this.map.widthInPixels / 2, this.map.heightInPixels / 2, this.map.widthInPixels, this.map.heightInPixels);
+        this.backgroundShader = this.scene.add.shader('background-shader', this.map.widthInPixels / 2, this.map.heightInPixels / 2, this.map.widthInPixels, this.map.heightInPixels);
 
-        console.log(this.shader.shader.fragmentSrc)
+        this.mapShader.setChannel0('bricks');
+        this.mapShader.setChannel1('test-png');
 
-        this.shader.setChannel0('bricks');
+        this.backgroundShader.setChannel0('bricks');
+
+        this.backgroundShader.setDepth(0);
+        this.mapShader.setDepth(3);
 
     }
 }

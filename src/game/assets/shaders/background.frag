@@ -3,7 +3,6 @@ precision mediump float;
 #endif
 
 uniform sampler2D iChannel0;    // Background texture
-uniform sampler2D iChannel1;    // Map texture
 
 uniform float time;
 uniform vec2 resolution;
@@ -18,10 +17,8 @@ void main( void ) {
     vec2 backgroundTexcoord = (fragCoordFix.xy / resolution.y) * tiling;
     vec4 background = texture2D(iChannel0, backgroundTexcoord);
 
-    vec2 mapTexcoord = (fragCoordFix.xy / resolution.xy);
-    vec4 map = texture2D(iChannel1, mapTexcoord);
+    background *= 0.5;
+    background.w = 1.0;
 
-    vec4 finalColor = mix(vec4(0,0,0,0), background, map.w);
-
-    gl_FragColor = finalColor;
+    gl_FragColor = background;
 }

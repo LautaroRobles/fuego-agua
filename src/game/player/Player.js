@@ -33,6 +33,8 @@ export default class Player {
         this.initializePlayerController(config);
         this.initializeEvents(config);
         this.initializeCollisions(config);
+
+        this.matter.setDepth(1);
     }
     initializeContainer(config) {
         let x = config.x;

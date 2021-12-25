@@ -10,5 +10,7 @@ export default class Box extends PhysicsSprite {
 
         this.physics.setMass(20);
         this.physics.setFriction(2);
+
+        this.setDepth(1);
     }
 }
