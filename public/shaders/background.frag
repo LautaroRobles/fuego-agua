@@ -10,7 +10,7 @@ uniform vec2 resolution;
 varying vec2 fragCoord;
 
 void main( void ) {
-    vec2 fragCoordFix = vec2(fragCoord.x, 1.0 - fragCoord.y);
+    vec2 fragCoordFix = vec2(fragCoord.x, fragCoord.y);
 
     float tiling = 16.0;
 
