@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="83">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="106">
  <editorsettings>
   <export target="level-test.json" format="json"/>
  </editorsettings>
@@ -82,19 +82,28 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="9" name="objects" tilewidth="128" tileheight="128" tilecount="3" columns="0">
+ <tileset firstgid="9" name="objects" tilewidth="128" tileheight="256" tilecount="4" columns="0">
   <grid orientation="orthogonal" width="1" height="1"/>
   <tile id="0" type="box">
    <image width="128" height="128" source="../interactive/stone.png"/>
   </tile>
   <tile id="2" type="button">
    <properties>
-    <property name="pressed" type="bool" value="false"/>
+    <property name="activates" type="int" value="0"/>
    </properties>
-   <image width="128" height="128" source="../interactive/button.png"/>
+   <image width="128" height="32" source="../interactive/button.png"/>
   </tile>
   <tile id="3" type="ball">
    <image width="64" height="64" source="../interactive/ball.png"/>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="activation" type="int" value="0"/>
+    <property name="moveX" type="float" value="0"/>
+    <property name="moveY" type="float" value="0"/>
+    <property name="rotate" type="float" value="0"/>
+   </properties>
+   <image width="32" height="256" source="../interactive/platform.png"/>
   </tile>
  </tileset>
  <layer id="1" name="layout" width="32" height="32">
@@ -120,7 +129,7 @@
 2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,
 2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,6,0,0,0,0,0,0,0,0,2,
 2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,2,6,0,0,0,0,0,0,0,2,
-2,2,0,0,0,2,2,2,2,2,2,2,4,0,0,0,0,2,2,2,2,2,2,2,6,0,0,0,0,0,0,2,
+2,2,0,0,0,0,2,2,2,2,2,2,4,0,0,0,0,2,2,2,2,2,2,2,6,0,0,0,0,0,0,2,
 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,6,0,0,0,0,0,2,
 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,6,0,0,0,0,2,
 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,6,0,0,5,2,
@@ -134,13 +143,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="objects">
-  <object id="39" gid="11" x="192" y="1984" width="128" height="128">
-   <properties>
-    <property name="pressed" type="bool" value="false"/>
-   </properties>
-  </object>
   <object id="42" gid="12" x="640" y="128" width="64" height="64"/>
-  <object id="48" gid="11" x="1792" y="1600" width="128" height="128"/>
   <object id="49" gid="12" x="1472" y="128" width="64" height="64"/>
   <object id="51" gid="12" x="1856" y="128" width="64" height="64"/>
   <object id="52" gid="12" x="1536" y="448" width="64" height="64"/>
@@ -153,9 +156,48 @@
   <object id="70" name="lava" type="fluid" x="1088" y="1792" width="576" height="44"/>
   <object id="71" name="water" type="fluid" x="576" y="192" width="192" height="44"/>
   <object id="73" name="water" type="fluid" x="1344" y="704" width="320" height="128"/>
-  <object id="79" gid="11" x="1856" y="1792" width="128" height="128"/>
   <object id="80" name="lava" type="fluid" x="1728" y="704" width="320" height="128"/>
-  <object id="81" name="lava" type="fluid" x="1408" y="1408" width="640" height="192"/>
-  <object id="82" name="water" type="fluid" x="0" y="1856" width="640" height="192"/>
+  <object id="82" name="lava" type="fluid" x="0" y="1856" width="576" height="192"/>
+  <object id="96" name="1" gid="13" x="1088" y="1792" width="32" height="256">
+   <properties>
+    <property name="activation" type="int" value="1"/>
+    <property name="moveX" type="float" value="0"/>
+    <property name="moveY" type="float" value="-128"/>
+   </properties>
+  </object>
+  <object id="99" name="2" gid="13" x="128" y="1792" width="32" height="256" rotation="90">
+   <properties>
+    <property name="activation" type="int" value="2"/>
+    <property name="moveY" type="float" value="-448"/>
+   </properties>
+  </object>
+  <object id="100" name="2" gid="11" x="1856" y="1792" width="128" height="32">
+   <properties>
+    <property name="activates" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="101" name="1" gid="11" x="1792" y="1600" width="128" height="32">
+   <properties>
+    <property name="activates" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="102" name="3" gid="11" x="448" y="1344" width="128" height="32">
+   <properties>
+    <property name="activates" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="103" name="3" gid="13" x="2048" y="2240" width="208" height="2048" rotation="270">
+   <properties>
+    <property name="activation" type="int" value="3"/>
+    <property name="moveY" type="float" value="-640"/>
+   </properties>
+  </object>
+  <object id="104" gid="12" x="192" y="1728" width="64" height="64"/>
+  <object id="105" name="2" gid="13" x="-320" y="1152" width="32" height="256" rotation="180">
+   <properties>
+    <property name="activation" type="int" value="2"/>
+    <property name="moveX" type="float" value="768"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

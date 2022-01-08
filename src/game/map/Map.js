@@ -4,6 +4,7 @@ import Ball from "../objects/Ball";
 import Fluid from "../fluids/Fluid";
 import Water from "../fluids/Water";
 import Lava from "../fluids/Lava";
+import Platform from "../objects/Platform";
 
 export default class Map {
     constructor(config) {
@@ -43,20 +44,28 @@ export default class Map {
         this.mapShader.setDepth(3);
     }
     objects() {
+        this.customObjects = []
+
         //call created() on each object because createFromObjects() copies properties from Tiled after the constructor is called
-        this.buttons = this.map.createFromObjects('objects', {gid: 11, classType: Button})
-        this.buttons.forEach(button => button.created())
+        this.buttons = this.map.createFromObjects('objects', {gid: 11, classType: Button, key: 'button'})
+        this.buttons.forEach(button => {this.customObjects.push(button); button.created(this)})
 
         this.boxes = this.map.createFromObjects('objects', {gid: 9, classType: Box, key: 'box'});
-        this.boxes.forEach(box => box.created())
+        this.boxes.forEach(box => {this.customObjects.push(box); box.created(this)})
 
         this.balls = this.map.createFromObjects('objects', {gid: 12, classType: Ball})
-        this.balls.forEach(ball => ball.created())
+        this.balls.forEach(ball => {this.customObjects.push(ball); ball.created(this)})
+
+        this.platforms = this.map.createFromObjects('objects', {gid: 13, classType: Platform, key: 'platform'})
+        this.platforms.forEach(platform => {this.customObjects.push(platform); platform.created(this)})
 
         this.water = this.map.createFromObjects('objects', {name: 'water', classType: Water})
-        this.water.forEach(water => water.created())
+        this.water.forEach(water => {this.customObjects.push(water); water.created(this)})
 
         this.lava = this.map.createFromObjects('objects', {name: 'lava', classType: Lava})
-        this.lava.forEach(lava => lava.created())
+        this.lava.forEach(lava => {this.customObjects.push(lava); lava.created(this)})
+
+        // when all objects are finished creating it calls mapLoaded to each object
+        this.customObjects.forEach(object => {if(object.mapLoaded) object.mapLoaded()})
     }
 }

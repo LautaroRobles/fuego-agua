@@ -4,6 +4,7 @@ import fireHead from '@/game/assets/players/fire-head.png'
 import fireBody from '@/game/assets/players/fire-body.png'
 import box from '@/game/assets/interactive/stone.png'
 import button from '@/game/assets/interactive/button.png'
+import platform from '@/game/assets/interactive/platform.png'
 import ball from '@/game/assets/interactive/ball.png'
 import baseTileset from '@/game/assets/tilesets/base.png'
 import testMap from '@/game/assets/maps/level-test.json'
@@ -24,6 +25,7 @@ export default class PreLoadScene extends Scene {
         //Objects
         this.load.image('box', box)
         this.load.image('button', button)
+        this.load.image('platform', platform)
         this.load.image('ball', ball)
 
         //Map related
