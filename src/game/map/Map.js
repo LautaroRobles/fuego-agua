@@ -1,10 +1,22 @@
+import Box from "../objects/Box";
+import Button from "../objects/Button";
+import Ball from "../objects/Ball";
+import Fluid from "../fluids/Fluid";
+import Water from "../fluids/Water";
+import Lava from "../fluids/Lava";
+
 export default class Map {
     constructor(config) {
         this.scene = config.scene;
 
         this.map = this.scene.make.tilemap({key: config.key});
+
+        this.layout();
+        this.objects();
+    }
+    layout() {
         this.tileset = this.map.addTilesetImage('base', 'base-tileset');
-        this.layer = this.map.createLayer(0, this.tileset, 0, 0);
+        this.layer = this.map.createLayer('layout', this.tileset, 0, 0);
 
         // Set up the layer to have matter bodies. Any colliding tiles will be given a Matter body.
         this.map.setCollisionByProperty({ collides: true });
@@ -29,7 +41,22 @@ export default class Map {
 
         this.backgroundShader.setDepth(0);
         this.mapShader.setDepth(3);
+    }
+    objects() {
+        //call created() on each object because createFromObjects() copies properties from Tiled after the constructor is called
+        this.buttons = this.map.createFromObjects('objects', {gid: 11, classType: Button})
+        this.buttons.forEach(button => button.created())
 
+        this.boxes = this.map.createFromObjects('objects', {gid: 9, classType: Box, key: 'box'});
+        this.boxes.forEach(box => box.created())
 
+        this.balls = this.map.createFromObjects('objects', {gid: 12, classType: Ball})
+        this.balls.forEach(ball => ball.created())
+
+        this.water = this.map.createFromObjects('objects', {name: 'water', classType: Water})
+        this.water.forEach(water => water.created())
+
+        this.lava = this.map.createFromObjects('objects', {name: 'lava', classType: Lava})
+        this.lava.forEach(lava => lava.created())
     }
 }

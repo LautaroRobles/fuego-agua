@@ -18,6 +18,7 @@ module.exports = {
           })
     })
   },
+  "publicPath": "/fuego-agua/",
   devServer: {
     hot: false
   }

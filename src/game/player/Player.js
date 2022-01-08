@@ -70,8 +70,6 @@ export default class Player {
 
         this.matter.setExistingBody(compoundBody);
         this.matter.setFixedRotation();
-
-        console.log(this);
     }
 
     initializeEvents(config) {

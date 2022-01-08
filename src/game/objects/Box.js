@@ -1,16 +1,12 @@
-import PhysicsSprite from "@/game/utils/PhysicsSprite";
+export default class Box extends Phaser.GameObjects.Sprite {
+    constructor(scene) {
+        super(scene, 0, 0, 'box');
+        this.scene = scene;
 
-export default class Box extends PhysicsSprite {
-    constructor(config) {
-        config.sprite = 'box';
-        super(config);
-
-        this.displayWidth = 128;
-        this.scaleY = this.scaleX;
-
-        this.physics.setMass(128);
-        this.physics.setFriction(16);
-
-        this.setDepth(1);
+        this.matter = this.scene.matter.add.gameObject(this);
+    }
+    created() {
+        if(this.data)
+            this.properties = this.data.list;
     }
 }

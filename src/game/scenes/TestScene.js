@@ -9,14 +9,7 @@ export default class TestScene extends Scene {
         super({key: 'TestScene'});
     }
     create() {
-
         new Fuego({scene: this, x: 300, y: 300})
-        new Box({scene: this, x: 200, y: 100})
-        new Box({scene: this, x: 200, y: 100})
-        new Box({scene: this, x: 200, y: 100})
-        new Box({scene: this, x: 200, y: 100})
-        new Box({scene: this, x: 200, y: 100})
-
         new Map({scene: this, key: 'test'})
     }
     update(time, delta) {
