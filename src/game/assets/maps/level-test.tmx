@@ -1,111 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="106">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="115">
  <editorsettings>
-  <export target="level-test.json" format="json"/>
+  <export target="export/level-test.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" name="base" tilewidth="64" tileheight="64" tilecount="8" columns="8">
-  <image source="../tilesets/base.png" width="512" height="64"/>
-  <tile id="0">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="2" x="0" y="31" width="64" height="33"/>
-   </objectgroup>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="64" height="64"/>
-   </objectgroup>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="3">
-    <object id="2" x="0" y="0">
-     <polygon points="0,0 64,64 64,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 0,64 64,0"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="64">
-     <polygon points="0,0 64,0 64,-64"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="5">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 0,64 64,64"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="6">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="64">
-     <polygon points="0,0 64,0 64,-64 0.0065972,-32.7326"/>
-    </object>
-   </objectgroup>
-  </tile>
-  <tile id="7">
-   <properties>
-    <property name="collides" type="bool" value="true"/>
-   </properties>
-   <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0">
-     <polygon points="0,0 0,64 64,64 63.9774,31.1225"/>
-    </object>
-   </objectgroup>
-  </tile>
- </tileset>
- <tileset firstgid="9" name="objects" tilewidth="128" tileheight="256" tilecount="4" columns="0">
-  <grid orientation="orthogonal" width="1" height="1"/>
-  <tile id="0" type="box">
-   <image width="128" height="128" source="../interactive/stone.png"/>
-  </tile>
-  <tile id="2" type="button">
-   <properties>
-    <property name="activates" type="int" value="0"/>
-   </properties>
-   <image width="128" height="32" source="../interactive/button.png"/>
-  </tile>
-  <tile id="3" type="ball">
-   <image width="64" height="64" source="../interactive/ball.png"/>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="activation" type="int" value="0"/>
-    <property name="moveX" type="float" value="0"/>
-    <property name="moveY" type="float" value="0"/>
-    <property name="rotate" type="float" value="0"/>
-   </properties>
-   <image width="32" height="256" source="../interactive/platform.png"/>
-  </tile>
- </tileset>
+ <tileset firstgid="1" source="../tilesets/base.tsx"/>
+ <tileset firstgid="9" source="../tilesets/objects.tsx"/>
  <layer id="1" name="layout" width="32" height="32">
   <data encoding="csv">
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
@@ -123,12 +22,12 @@
 2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,0,0,0,2,2,2,0,0,0,2,
 2,2,2,4,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,2,
-2,2,2,6,0,0,0,5,2,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,
-2,2,2,2,2,2,2,2,2,8,1,1,7,2,2,2,2,2,2,0,0,0,0,3,2,2,2,2,2,2,2,2,
-2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,
-2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,
-2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,6,0,0,0,0,0,0,0,0,2,
-2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,2,6,0,0,0,0,0,0,0,2,
+2,2,2,6,0,0,0,5,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,8,1,1,7,2,2,2,2,2,2,0,0,0,2,2,2,2,2,2,2,2,2,2,
+2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,2,
+2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0,0,0,0,0,3,2,2,2,2,2,2,2,2,
+2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,6,0,3,2,2,2,2,2,2,2,
+2,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,2,2,2,2,2,2,6,0,3,2,2,2,2,2,2,
 2,2,0,0,0,0,2,2,2,2,2,2,4,0,0,0,0,2,2,2,2,2,2,2,6,0,0,0,0,0,0,2,
 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,6,0,0,0,0,0,2,
 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,2,6,0,0,0,0,2,
@@ -186,17 +85,17 @@
     <property name="activates" type="int" value="3"/>
    </properties>
   </object>
-  <object id="103" name="3" gid="13" x="2048" y="2240" width="208" height="2048" rotation="270">
-   <properties>
-    <property name="activation" type="int" value="3"/>
-    <property name="moveY" type="float" value="-640"/>
-   </properties>
-  </object>
-  <object id="104" gid="12" x="192" y="1728" width="64" height="64"/>
-  <object id="105" name="2" gid="13" x="-320" y="1152" width="32" height="256" rotation="180">
+  <object id="105" name="2" gid="13" x="-320" y="1088" width="32" height="256" rotation="180">
    <properties>
     <property name="activation" type="int" value="2"/>
     <property name="moveX" type="float" value="768"/>
+   </properties>
+  </object>
+  <object id="110" gid="12" x="192" y="1792" width="64" height="64"/>
+  <object id="113" name="3" gid="13" x="832" y="1792" width="32" height="256" rotation="90">
+   <properties>
+    <property name="activation" type="int" value="3"/>
+    <property name="moveY" type="float" value="-512"/>
    </properties>
   </object>
  </objectgroup>

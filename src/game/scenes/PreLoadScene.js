@@ -6,8 +6,8 @@ import box from '@/game/assets/interactive/stone.png'
 import button from '@/game/assets/interactive/button.png'
 import platform from '@/game/assets/interactive/platform.png'
 import ball from '@/game/assets/interactive/ball.png'
-import baseTileset from '@/game/assets/tilesets/base.png'
-import testMap from '@/game/assets/maps/level-test.json'
+import baseTileset from '@/game/assets/tilesets/base/base.png'
+import testMap from '@/game/assets/maps/export/level-test.json'
 import bricks from '@/game/assets/backgrounds/bricks.png'
 
 /*
