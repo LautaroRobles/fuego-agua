@@ -13,7 +13,7 @@
  <tile id="3" type="ball">
   <image width="64" height="64" source="objects/ball.png"/>
  </tile>
- <tile id="4">
+ <tile id="4" type="platform">
   <properties>
    <property name="activation" type="int" value="0"/>
    <property name="moveX" type="float" value="0"/>

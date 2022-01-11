@@ -46,17 +46,19 @@ export default class Map {
     objects() {
         this.customObjects = []
 
+        // TODO crear un createFromObjects mejor, o personalizado para lo que quiero, las gid se joden cuando agrego mas tiles
+
         //call created() on each object because createFromObjects() copies properties from Tiled after the constructor is called
-        this.buttons = this.map.createFromObjects('objects', {gid: 11, classType: Button, key: 'button'})
+        this.buttons = this.map.createFromObjects('objects', {gid: 18, classType: Button, key: 'button'})
         this.buttons.forEach(button => {this.customObjects.push(button); button.created(this)})
 
-        this.boxes = this.map.createFromObjects('objects', {gid: 9, classType: Box, key: 'box'});
+        this.boxes = this.map.createFromObjects('objects', {gid: 16, classType: Box, key: 'box'});
         this.boxes.forEach(box => {this.customObjects.push(box); box.created(this)})
 
-        this.balls = this.map.createFromObjects('objects', {gid: 12, classType: Ball})
+        this.balls = this.map.createFromObjects('objects', {gid: 19, classType: Ball})
         this.balls.forEach(ball => {this.customObjects.push(ball); ball.created(this)})
 
-        this.platforms = this.map.createFromObjects('objects', {gid: 13, classType: Platform, key: 'platform'})
+        this.platforms = this.map.createFromObjects('objects', {gid: 20, classType: Platform, key: 'platform'})
         this.platforms.forEach(platform => {this.customObjects.push(platform); platform.created(this)})
 
         this.water = this.map.createFromObjects('objects', {name: 'water', classType: Water})

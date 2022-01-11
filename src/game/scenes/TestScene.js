@@ -10,7 +10,7 @@ export default class TestScene extends Scene {
     }
     create() {
         new Fuego({scene: this, x: 300, y: 300})
-        new Map({scene: this, key: 'test'})
+        new Map({scene: this, key: 'map1'})
     }
     update(time, delta) {
         super.update(time, delta);

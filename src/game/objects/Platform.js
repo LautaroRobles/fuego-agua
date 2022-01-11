@@ -5,9 +5,9 @@ export default class Platform extends Phaser.GameObjects.Sprite {
 
         this.matter = this.scene.matter.add.gameObject(this, {
             isStatic: true,
-            friction: 1,
+            friction: 0,
             frictionAir: 0,
-            frictionStatic: Infinity
+            frictionStatic: 1
         });
     }
     created() {
@@ -21,6 +21,7 @@ export default class Platform extends Phaser.GameObjects.Sprite {
         this.xStart = this.x;
         this.yStart = this.y;
         this.angleStart = this.angle;
+        this.angleHelper = this.angle;
 
         this.initializeEvents();
     }
@@ -49,14 +50,20 @@ export default class Platform extends Phaser.GameObjects.Sprite {
         let angleEnd = this.angleStart + this.properties.rotate;
 
         if(this.activated) {
-            this.x = this.transitionTo(this.x, this.xStart, this.properties.moveX, delta, positionEpsilon);
+            let nextX = this.transitionTo(this.x, this.xStart, this.properties.moveX, delta, positionEpsilon);
+            this.matter.setVelocityX(nextX - this.x);
+            this.x = nextX;
             this.y = this.transitionTo(this.y, this.yStart, this.properties.moveY, delta, positionEpsilon);
-            this.angle = this.transitionTo(this.angle, this.angleStart, this.properties.rotate, delta, rotationEpsilon);
+            this.angleHelper = this.transitionTo(this.angleHelper, this.angleStart, this.properties.rotate, delta, rotationEpsilon);
+            this.angle = this.angleHelper;
         }
         else if(!this.activated){
-            this.x = this.transitionTo(this.x, xEnd, -this.properties.moveX, delta, positionEpsilon);
+            let nextX = this.transitionTo(this.x, xEnd, -this.properties.moveX, delta, positionEpsilon);
+            this.matter.setVelocityX(nextX - this.x);
+            this.x = nextX;
             this.y = this.transitionTo(this.y, yEnd, -this.properties.moveY, delta, positionEpsilon);
-            this.angle = this.transitionTo(this.angle, angleEnd, -this.properties.rotate, delta, rotationEpsilon);
+            this.angleHelper = this.transitionTo(this.angle, angleEnd, -this.properties.rotate, delta, rotationEpsilon);
+            this.angle = this.angleHelper;
         }
     }
 

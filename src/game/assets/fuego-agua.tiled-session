@@ -3,11 +3,12 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "maps/level-test.tmx",
+    "activeFile": "maps/map1.tmx",
     "expandedProjectPaths": [
-        "tilesets",
         "maps",
-        "."
+        "tilesets",
+        ".",
+        "maps/export"
     ],
     "fileStates": {
         "": {
@@ -36,8 +37,8 @@
             "scale": 0.33,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 962.1212121212122,
-                "y": 933.3333333333334
+                "x": 771.2121212121214,
+                "y": 827.2727272727271
             }
         },
         "maps/level-test.tmx#base": {
@@ -56,11 +57,11 @@
             "scaleInEditor": 1.5
         },
         "maps/map1.tmx": {
-            "scale": 0.4193359375,
-            "selectedLayer": 0,
+            "scale": 0.33,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 988.4676292501166,
-                "y": 1019.4690265486726
+                "x": 910.6060606060605,
+                "y": 827.2727272727271
             }
         },
         "maps/objects.tsx": {
@@ -103,21 +104,22 @@
     "last.externalTilesetPath": "D:/Usuarios/lauta/Projects/Web Projects/fuego-agua/src/game/assets/tilesets",
     "last.imagePath": "D:/Usuarios/lauta/Projects/Web Projects/fuego-agua/src/game/assets/tilesets/base",
     "map.height": 32,
-    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedExportFilter": "JSON map files (*.json)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 64,
     "map.tileWidth": 64,
     "map.width": 32,
     "openFiles": [
+        "maps/map1.tmx",
         "maps/level-test.tmx"
     ],
     "project": "fuego-agua.tiled-project",
     "recentFiles": [
         "maps/level-test.tmx",
+        "tilesets/base.tsx",
         "maps/map1.tmx",
-        "maps/base.tsx",
-        "maps/empty.tmx",
         "tilesets/objects.tsx",
-        "tilesets/base.tsx"
+        "maps/base.tsx",
+        "maps/empty.tmx"
     ]
 }

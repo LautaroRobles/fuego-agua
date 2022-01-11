@@ -95,13 +95,15 @@ export default class Fluid extends Phaser.GameObjects.Sprite {
         this.fluidGraphics.fillPath();
     }
     sensorCollided(collision, point) {
+        /*
         if(collision.bodyA.isStatic || collision.bodyB.isStatic) {
             return;
         }
+        */
 
         let bodyVelocity = collision.bodyA.parent.velocity;
 
-        this.pointsData[point].height += (Math.abs(bodyVelocity.x) + bodyVelocity.y) * 0.25;
+        this.pointsData[point].height += Math.abs(bodyVelocity.x) * 0.15 + bodyVelocity.y * 0.5;
     }
     fluidPhysics(time, delta) {
         const targetHeight = 0;
@@ -110,7 +112,7 @@ export default class Fluid extends Phaser.GameObjects.Sprite {
         let d = this.fluidData.d;
         let s = this.fluidData.s;
 
-        for(let i = 0; i < this.points.length - 2; i++) {
+        for(let i = 1; i < this.points.length - 3; i++) {
             let y = this.pointsData[i].height - targetHeight;
             let loss = -d * this.pointsData[i].velocity;
             let acceleration = -k * y + loss;
@@ -122,7 +124,7 @@ export default class Fluid extends Phaser.GameObjects.Sprite {
         }
 
         // propagation
-        for(let i = 0; i < this.points.length - 2; i++) {
+        for(let i = 1; i < this.points.length - 3; i++) {
             if(i > 0) {
                 this.pointsData[i - 1].velocity += s * (this.pointsData[i].height - this.pointsData[i - 1].height)
             }
