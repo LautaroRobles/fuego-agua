@@ -5,10 +5,10 @@
     },
     "activeFile": "maps/map1.tmx",
     "expandedProjectPaths": [
-        ".",
         "maps/export",
-        "maps",
-        "tilesets"
+        ".",
+        "tilesets",
+        "maps"
     ],
     "fileStates": {
         "": {
@@ -60,8 +60,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1065,
-                "y": 1374
+                "x": 492,
+                "y": 1373
             }
         },
         "maps/objects.tsx": {
@@ -113,11 +113,12 @@
         "maps/map1.tmx"
     ],
     "project": "fuego-agua.tiled-project",
+    "property.type": "color",
     "recentFiles": [
+        "tilesets/objects.tsx",
         "maps/map1.tmx",
         "maps/level-test.tmx",
         "tilesets/base.tsx",
-        "tilesets/objects.tsx",
         "maps/base.tsx",
         "maps/empty.tmx"
     ]

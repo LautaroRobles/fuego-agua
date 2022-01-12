@@ -48,26 +48,39 @@ export default class Map {
 
         // TODO crear un createFromObjects mejor, o personalizado para lo que quiero, las gid se joden cuando agrego mas tiles
 
-        //call created() on each object because createFromObjects() copies properties from Tiled after the constructor is called
-        this.buttons = this.map.createFromObjects('objects', {gid: 18, classType: Button, key: 'button'})
-        this.buttons.forEach(button => {this.customObjects.push(button); button.created(this)})
+        const objectLayer = 0;
 
-        this.boxes = this.map.createFromObjects('objects', {gid: 16, classType: Box, key: 'box'});
-        this.boxes.forEach(box => {this.customObjects.push(box); box.created(this)})
-
-        this.balls = this.map.createFromObjects('objects', {gid: 19, classType: Ball})
-        this.balls.forEach(ball => {this.customObjects.push(ball); ball.created(this)})
-
-        this.platforms = this.map.createFromObjects('objects', {gid: 20, classType: Platform, key: 'platform'})
-        this.platforms.forEach(platform => {this.customObjects.push(platform); platform.created(this)})
-
-        this.water = this.map.createFromObjects('objects', {name: 'water', classType: Water})
-        this.water.forEach(water => {this.customObjects.push(water); water.created(this)})
-
-        this.lava = this.map.createFromObjects('objects', {name: 'lava', classType: Lava})
-        this.lava.forEach(lava => {this.customObjects.push(lava); lava.created(this)})
+        this.map.objects[objectLayer].objects.forEach(
+            object => this.customObjects.push(this.createObject(object))
+        )
 
         // when all objects are finished creating it calls mapLoaded to each object
         this.customObjects.forEach(object => {if(object.mapLoaded) object.mapLoaded()})
+    }
+    createObject(object) {
+        object.scene = this.map.scene;
+        object.map = this;
+
+        let properties = {}
+
+        // map properties   from {name: "name", type: "type", value: "value"}
+        //                  to   object.name = value
+        if(object.properties)
+            object.properties.forEach(property => {
+                properties[property.name] = property.value
+            })
+
+        object.properties = properties;
+
+        switch(object.type) {
+            case "ball":
+                return new Ball(object)
+            case "box":
+                return new Box(object);
+            case "button":
+                return new Button(object);
+            case "platform":
+                return new Platform(object);
+        }
     }
 }
