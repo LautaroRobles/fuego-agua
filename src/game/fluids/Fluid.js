@@ -1,9 +1,13 @@
 const Matter = Phaser.Physics.Matter.Matter;
 
-export default class Fluid extends Phaser.GameObjects.Sprite {
-    constructor(scene) {
-        super(scene, 0, 0, 'button');
-        this.scene = scene;
+export default class Fluid extends Phaser.GameObjects.GameObject{
+    constructor(config) {
+        super(config.scene);
+
+        this.scene = config.scene;
+        this.config = config;
+        this.map = config.map;
+        this.properties = config.properties;
 
         this.fluidData = {
             k: 0.1,
@@ -12,27 +16,24 @@ export default class Fluid extends Phaser.GameObjects.Sprite {
             color: 0x4ED1FF,
             alpha: 0.5
         }
-
-        // hack, because createFromObjects() tries to put a sprite allways, but i want to create my own gameObjects
-        this.setVisible(false)
     }
-    // this has to be called after a map.createFromObjects function
+    // To be called by childrens
     created() {
-        if(this.data)
-            this.properties = this.data.list;
-
         this.createFluidShape();
         this.createFluidCollision();
-
         this.initializeEvents()
     }
     createFluidShape() {
+
+        let pointWidth = 32;
+        let fluidPoints = this.config.width / pointWidth;
+
         this.points = [];
-        for(let x = 0; x <= this.scaleX; x++) {
-            this.points.push([x * this.width, 0])
+        for(let x = 0; x <= fluidPoints; x++) {
+            this.points.push([x * pointWidth, 0])
         }
-        this.points.push([this.scaleX * this.width, this.scaleY * this.height]);
-        this.points.push([0, this.scaleY * this.height]);
+        this.points.push([this.config.width, this.config.height]);
+        this.points.push([0, this.config.height]);
 
         this.pointsData = [];
 
@@ -47,19 +48,22 @@ export default class Fluid extends Phaser.GameObjects.Sprite {
 
         this.fluidGraphics.alpha = this.fluidData.alpha;
         this.fluidGraphics.setDepth(1);
-        this.fluidGraphics.x = this.x - this.width * this.scaleX * 0.5;
-        this.fluidGraphics.y = this.y + this.height * this.scaleY * 0.5;
+        this.fluidGraphics.x = this.config.x;
+        this.fluidGraphics.y = this.config.y - this.config.height;
     }
     createFluidCollision() {
         this.fluidCollisions = [];
 
         this.matter = this.scene.matter.add.gameObject(this);
 
-        for(let i = 0; i < this.scaleX; i++) {
-            let x = this.x + this.width * i - this.width * this.scaleX * 0.5 + this.width * 0.5;
-            let y = this.y + this.height * this.scaleY * 0.5;
+        let pointWidth = 32;
+        let fluidPoints = this.config.width / pointWidth;
 
-            let sensor = Matter.Bodies.rectangle(x, y, this.width, this.height, { isSensor: true });
+        for(let i = 0; i < fluidPoints; i++) {
+            let x = this.config.x + pointWidth * i + pointWidth * 0.5;
+            let y = this.config.y - this.config.height;
+
+            let sensor = Matter.Bodies.rectangle(x, y, pointWidth, pointWidth, { isSensor: true });
 
             sensor.onCollideActiveCallback = (collision) => this.sensorCollided(collision, i);
 
@@ -68,7 +72,7 @@ export default class Fluid extends Phaser.GameObjects.Sprite {
 
         let compoundBody = Matter.Body.create({
             parts: this.fluidCollisions,
-            ignoreGravity: true
+            ignoreGravity: true,
         });
         this.matter.setExistingBody(compoundBody);
     }
@@ -103,7 +107,7 @@ export default class Fluid extends Phaser.GameObjects.Sprite {
 
         let bodyVelocity = collision.bodyA.parent.velocity;
 
-        this.pointsData[point].height += Math.abs(bodyVelocity.x) * 0.15 + bodyVelocity.y * 0.5;
+        this.pointsData[point].height += Math.abs(bodyVelocity.x) * 0.15 + bodyVelocity.y * 0.25;
     }
     fluidPhysics(time, delta) {
         const targetHeight = 0;

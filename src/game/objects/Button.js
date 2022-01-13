@@ -18,7 +18,7 @@ export default class Button {
         this.initializeEvents();
     }
     createButtonSprites() {
-        let rectangle = new Rectangle(this.scene, 0, 0, this.config.width - 32, this.config.height - 16, 0xff00ff);
+        let rectangle = new Rectangle(this.scene, 0, 0, this.config.width - 40, this.config.height - 16, 0xff00ff);
         let sprite = new Sprite(this.scene, 0, 0, 'button')
 
         sprite.scaleX = this.config.width * 1/sprite.width;

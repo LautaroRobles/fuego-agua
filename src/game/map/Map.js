@@ -44,13 +44,16 @@ export default class Map {
         this.mapShader.setDepth(3);
     }
     objects() {
-        this.customObjects = []
+        this.customObjects = [];
 
-        // TODO crear un createFromObjects mejor, o personalizado para lo que quiero, las gid se joden cuando agrego mas tiles
-
-        const objectLayer = 0;
+        const fluidLayer = 0;
+        const objectLayer = 1;
 
         this.map.objects[objectLayer].objects.forEach(
+            object => this.customObjects.push(this.createObject(object))
+        )
+        
+        this.map.objects[fluidLayer].objects.forEach(
             object => this.customObjects.push(this.createObject(object))
         )
 
@@ -81,6 +84,10 @@ export default class Map {
                 return new Button(object);
             case "platform":
                 return new Platform(object);
+            case "water":
+                return new Water(object);
+            case "lava":
+                return new Lava(object);
         }
     }
 }

@@ -1,5 +1,6 @@
 import { Scene } from 'phaser'
-import test from '@/game/assets/players/test.png'
+import fuegoCuerpo from '@/game/assets/players/fuego/fuego-cuerpo.png'
+import fuegoCuerpoJson from '@/game/assets/players/fuego/fuego-cuerpo.json'
 import fireHead from '@/game/assets/players/fire-head.png'
 import fireBody from '@/game/assets/players/fire-body.png'
 import box from '@/game/assets/tilesets/objects/stone.png'
@@ -8,7 +9,6 @@ import platform from '@/game/assets/tilesets/objects/platform.png'
 import ball from '@/game/assets/tilesets/objects/ball.png'
 import baseTileset from '@/game/assets/tilesets/base/base.png'
 import bricks from '@/game/assets/backgrounds/bricks.png'
-import mapTest from '../assets/maps/export/level-test.json'
 
 /*
 Scene for importing assets to the game
@@ -18,9 +18,8 @@ export default class PreLoadScene extends Scene {
         super({ key: 'BootScene' })
     }
     preload () {
-        this.load.image('player', test)
-        this.load.image('fire-head', fireHead)
-        this.load.image('fire-body', fireBody)
+        this.load.image('fuego-cabeza', fireHead)
+        this.load.atlas('fuego-cuerpo', fuegoCuerpo, fuegoCuerpoJson)
 
         //Objects
         this.load.image('box', box)
