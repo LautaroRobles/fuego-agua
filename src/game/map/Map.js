@@ -1,10 +1,11 @@
 import Box from "../objects/Box";
 import Button from "../objects/Button";
+import Lever from "../objects/Lever";
 import Ball from "../objects/Ball";
-import Fluid from "../fluids/Fluid";
 import Water from "../fluids/Water";
 import Lava from "../fluids/Lava";
 import Platform from "../objects/Platform";
+import Pendulum from "../objects/Pendulum";
 
 export default class Map {
     constructor(config) {
@@ -12,8 +13,18 @@ export default class Map {
 
         this.map = this.scene.make.tilemap({key: config.key});
 
+        this.collisionCategories();
         this.layout();
         this.objects();
+    }
+    collisionCategories() {
+        this.collision = {};
+        this.collision.layout = this.scene.matter.world.nextCategory();
+        this.collision.objects = this.scene.matter.world.nextCategory();
+        this.collision.objectsSensor = this.scene.matter.world.nextCategory();
+        this.collision.objectsGhost = this.scene.matter.world.nextCategory();
+        this.collision.fluids = this.scene.matter.world.nextCategory();
+        this.collision.players = this.scene.matter.world.nextCategory();
     }
     layout() {
         this.tileset = this.map.addTilesetImage('base', 'base-tileset');
@@ -35,10 +46,13 @@ export default class Map {
         this.rt.setDepth(0);
         this.rt.saveTexture('map-texture');
 
-        this.mapShader.setChannel0('bricks');
+        this.mapShader.setChannel0('background-bricks');
         this.mapShader.setChannel1('map-texture');
+        this.mapShader.setUniform('tiling.value', 16);
 
-        this.backgroundShader.setChannel0('bricks');
+        this.backgroundShader.setChannel0('background-bricks');
+        this.backgroundShader.setUniform('tiling.value', 16);
+        this.backgroundShader.setUniform('darken.value', 0.5);
 
         this.backgroundShader.setDepth(0);
         this.mapShader.setDepth(3);
@@ -50,11 +64,21 @@ export default class Map {
         const objectLayer = 1;
 
         this.map.objects[objectLayer].objects.forEach(
-            object => this.customObjects.push(this.createObject(object))
+            object => {
+                let customObject = this.createObject(object);
+                if(customObject !== undefined) {
+                    this.customObjects.push(customObject)
+                }
+            }
         )
         
         this.map.objects[fluidLayer].objects.forEach(
-            object => this.customObjects.push(this.createObject(object))
+            object => {
+                let customObject = this.createObject(object);
+                if(customObject !== undefined) {
+                    this.customObjects.push(customObject)
+                }
+            }
         )
 
         // when all objects are finished creating it calls mapLoaded to each object
@@ -82,8 +106,12 @@ export default class Map {
                 return new Box(object);
             case "button":
                 return new Button(object);
+            case "lever":
+                return new Lever(object);
             case "platform":
                 return new Platform(object);
+            case "pendulum":
+                return new Pendulum(object);
             case "water":
                 return new Water(object);
             case "lava":

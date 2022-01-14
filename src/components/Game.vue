@@ -27,9 +27,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .placeholder {
   font-size: 2rem;
   font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+#game-container {
+  height: min(100vh, 100vw);
+  position: relative;
+}
+#game-container canvas {
+  height: min(100vh, 100vw);
 }
 </style>

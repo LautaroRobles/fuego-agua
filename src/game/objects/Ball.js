@@ -1,21 +1,24 @@
-export default class Ball {
+import MapObject from "./MapObject";
+
+export default class Ball extends MapObject{
     constructor(config) {
-        this.scene = config.scene;
-        this.config = config;
+        super(config);
 
-        let spriteX = this.config.x + this.config.width / 2;
-        let spriteY = this.config.y - this.config.height / 2
+        let x = this.transform.position.x;
+        let y = this.transform.position.y;
 
-        this.ball = this.scene.add.sprite(spriteX, spriteY, 'ball');
-        this.ball.scale = this.config.width * 1/64;
+        this.ball = this.scene.add.sprite(x, y, 'ball');
         this.matter = this.scene.matter.add.gameObject(this.ball);
         this.matter.setBody({
             type: 'circle',
-            radius: this.config.width * 0.5,
+            radius: this.ball.width * 0.5,
         })
+        this.setMatterScale(this.matter, this.ball);
+        this.matter.angle = this.transform.rotation;
         this.matter.body.friction = 0.01;
         this.matter.body.frictionAir = 0;
         this.matter.body.frictionStatic = 0;
         this.matter.body.restitution = 0.3;
+        this.matter.setCollisionCategory(this.map.collision.objects);
     }
 }

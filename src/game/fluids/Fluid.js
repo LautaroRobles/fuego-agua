@@ -75,6 +75,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
             ignoreGravity: true,
         });
         this.matter.setExistingBody(compoundBody);
+        this.matter.setCollisionCategory(this.map.collision.fluids);
     }
     initializeEvents() {
         this.scene.matter.world.on('beforeupdate', (time, delta) => this.beforeUpdate(time, delta));
@@ -106,8 +107,11 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
         */
 
         let bodyVelocity = collision.bodyA.parent.velocity;
+        let mass = collision.bodyA.parent.mass;
 
-        this.pointsData[point].height += Math.abs(bodyVelocity.x) * 0.15 + bodyVelocity.y * 0.25;
+        let massModifier = Phaser.Math.Clamp(mass, 8, 32) / 8;
+
+        this.pointsData[point].height += (Math.abs(bodyVelocity.x) * 0.15 + bodyVelocity.y * 0.25) * massModifier;
     }
     fluidPhysics(time, delta) {
         const targetHeight = 0;

@@ -1,7 +1,12 @@
+---
+uniform.tiling: { "type": "1f", "value": 1.0 }
+---
+
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+uniform float tiling;
 uniform sampler2D iChannel0;    // Background texture
 uniform sampler2D iChannel1;    // Map texture
 
@@ -11,8 +16,6 @@ uniform vec2 resolution;
 varying vec2 fragCoord;
 
 vec4 tiles() {
-    float tiling = 16.0;
-
     vec2 tilesTexcoord = (fragCoord.xy / resolution.y) * tiling;
     vec4 tiles = texture2D(iChannel0, tilesTexcoord);
 

@@ -1,18 +1,17 @@
+import MapObject from "./MapObject";
+
 const Matter = Phaser.Physics.Matter.Matter;
 const Sprite = Phaser.GameObjects.Sprite;
 const Rectangle = Phaser.GameObjects.Rectangle;
 
-export default class Platform {
+export default class Platform extends MapObject{
     constructor(config) {
-        this.scene = config.scene;
-        this.config = config;
-        this.map = config.map;
-        this.properties = config.properties;
+        super(config);
 
         this.progress = 0;
         this.activated = true;
-        this.xStart = this.config.x + this.config.width / 2;
-        this.yStart = this.config.y - this.config.height / 2;
+        this.xStart = this.transform.x;
+        this.yStart = this.transform.y;
         this.angleStart = this.config.rotation;
         this.angleHelper = this.config.rotation;
 
@@ -20,7 +19,7 @@ export default class Platform {
 
         this.createPlatformSprites();
         this.createPlatformBody();
-        this.initializeEvents();
+        this.startUpdate();
     }
     createPlatformSprites() {
         let color = this.properties.color;
@@ -28,12 +27,9 @@ export default class Platform {
         color = color.substring(3);
         color = Number(`0x${color}`);
 
-        let rectangle = new Rectangle(this.scene, 0, 0, this.config.width - 16, this.config.height - 16, color);
-        let sprite = new Sprite(this.scene, 0, 0, 'platform')
-
-        sprite.scaleX = this.config.width * 1/sprite.width;
-        sprite.scaleY = this.config.height * 1/sprite.height;
-
+        let sprite = new Sprite(this.scene, 0, 0, 'platform');
+        let rectangle = new Rectangle(this.scene, 0, 0, sprite.width - 16, sprite.height - 16, color);
+        
         this.sprites = [rectangle, sprite]
 
         this.container = this.scene.add.container(0, 0, this.sprites);
@@ -41,10 +37,13 @@ export default class Platform {
     createPlatformBody() {
         this.matter = this.scene.matter.add.gameObject(this.container);
         
-        let bodyWidth = this.config.width;
-        let bodyHeight = this.config.height;
-        let bodyX = this.config.x + this.config.width / 2;
-        let bodyY = this.config.y - this.config.height / 2;
+        let bodyWidth = this.sprites[1].width;
+        let bodyHeight = this.sprites[1].height;
+        let bodyX = this.transform.x;
+        let bodyY = this.transform.y;
+
+        this.xStart = bodyX;
+        this.yStart = bodyY;
 
         this.matter.setExistingBody(Matter.Bodies.rectangle(
             bodyX, 
@@ -53,10 +52,9 @@ export default class Platform {
             bodyHeight, 
             {isStatic: true, frictionStatic: Infinity}
         ))
-    }
-    initializeEvents() {
-        this.scene.matter.world.on('beforeupdate', (time, delta) => this.beforeUpdate(time, delta));
-        this.scene.events.on('update', (time, delta) => this.update(time, delta));
+        this.matter.setCollisionCategory(this.map.collision.objects);
+        this.setMatterScale(this.matter, this.sprites[1]);
+        this.matter.angle = this.transform.rotation;
     }
     mapLoaded() {
         let mapObjects = this.map.customObjects;
@@ -132,7 +130,7 @@ export default class Platform {
 
     transitionTo(value, start, move, delta, epsilon) {
         if(Math.abs(value - (start + move)) > epsilon)
-            value += delta * Math.sign(move) * 0.1;
+            value += delta * Math.sign(move) * 0.1 * this.properties.speed;
         else
             value = start + move;
 

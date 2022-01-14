@@ -1,28 +1,24 @@
+import MapObject from "./MapObject";
+
 const Matter = Phaser.Physics.Matter.Matter;
 const Sprite = Phaser.GameObjects.Sprite;
 const Rectangle = Phaser.GameObjects.Rectangle;
 
-export default class Button {
+export default class Button extends MapObject {
     constructor(config) {
-        this.scene = config.scene;
-        this.config = config;
-        this.map = config.map;
-        this.properties = config.properties;
+        super(config);
 
         this.activated = false;
         this.progress = 0;
-        this.yStart = this.config.y - this.config.height / 2;
+        this.yStart = this.transform.position.y;
 
         this.createButtonSprites();
         this.createButtonCollision();
-        this.initializeEvents();
+        this.startUpdate();
     }
     createButtonSprites() {
-        let rectangle = new Rectangle(this.scene, 0, 0, this.config.width - 40, this.config.height - 16, 0xff00ff);
         let sprite = new Sprite(this.scene, 0, 0, 'button')
-
-        sprite.scaleX = this.config.width * 1/sprite.width;
-        sprite.scaleY = this.config.height * 1/sprite.height;
+        let rectangle = new Rectangle(this.scene, 0, 0, sprite.width - 40, sprite.height - 16, 0xff00ff);
 
         this.sprites = [rectangle, sprite];
 
@@ -46,10 +42,10 @@ export default class Button {
     createButtonCollision() {
         this.matter = this.scene.matter.add.gameObject(this.container);
         
-        let bodyWidth = this.config.width;
-        let bodyHeight = this.config.height;
-        let bodyX = this.config.x + this.config.width / 2;
-        let bodyY = this.config.y - this.config.height / 2;
+        let bodyWidth = this.sprites[1].width;
+        let bodyHeight = this.sprites[1].height
+        let bodyX = this.transform.position.x;
+        let bodyY = this.transform.position.y;
 
         this.matter.setExistingBody(Matter.Bodies.rectangle(
             bodyX, 
@@ -59,10 +55,9 @@ export default class Button {
             {ignoreGravity: true, isSensor: true}
         ))
         this.matter.body.onCollideActiveCallback = (collision) => this.buttonColliding(collision);
-    }
-    initializeEvents() {
-        this.scene.matter.world.on('beforeupdate', (time, delta) => this.beforeUpdate(time, delta));
-        this.scene.events.on('update', (time, delta) => this.update(time, delta));
+        this.matter.setCollisionCategory(this.map.collision.objectsSensor);
+        this.setMatterScale(this.matter, this.sprites[1]);
+        this.matter.angle = this.transform.rotation;
     }
     buttonColliding(collision) {
         if(collision.bodyA.isStatic)

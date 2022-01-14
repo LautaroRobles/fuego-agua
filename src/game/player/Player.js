@@ -89,6 +89,7 @@ export default class Player {
             }
         };
         this.controller.sensor.ground.onCollideActiveCallback = (collision) => {
+            //console.log(collision.bodyB.collisionFilter);
             this.controller.onFloor = true;
         };
     }
