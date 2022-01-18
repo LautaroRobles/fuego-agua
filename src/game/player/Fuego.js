@@ -4,8 +4,10 @@ const Sprite = Phaser.GameObjects.Sprite;
 export default class Fuego extends Player {
     constructor(config) {
         super(config);
+
+        this.startUpdate();
     }
-    initializeContainer(config) {
+    initializeContainer() {
         
         this.createAnimations();
 
@@ -21,7 +23,7 @@ export default class Fuego extends Player {
 
         this.sprites = [head, body];
 
-        super.initializeContainer(config);
+        super.initializeContainer();
     }
 
     createAnimations() {

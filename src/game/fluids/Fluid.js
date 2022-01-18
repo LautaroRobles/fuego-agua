@@ -47,7 +47,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
         this.fluidGraphics = this.scene.add.graphics();
 
         this.fluidGraphics.alpha = this.fluidData.alpha;
-        this.fluidGraphics.setDepth(1);
+        this.fluidGraphics.setDepth(2);
         this.fluidGraphics.x = this.config.x;
         this.fluidGraphics.y = this.config.y - this.config.height;
     }
@@ -63,7 +63,11 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
             let x = this.config.x + pointWidth * i + pointWidth * 0.5;
             let y = this.config.y - this.config.height;
 
-            let sensor = Matter.Bodies.rectangle(x, y, pointWidth, pointWidth, { isSensor: true });
+            let sensor = Matter.Bodies.rectangle(x, y, pointWidth, pointWidth, { isSensor: true,
+                collisionFilter: {
+                    category: this.map.collision.fluids
+                }
+            });
 
             sensor.onCollideActiveCallback = (collision) => this.sensorCollided(collision, i);
 
@@ -72,10 +76,9 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
 
         let compoundBody = Matter.Body.create({
             parts: this.fluidCollisions,
-            ignoreGravity: true,
+            ignoreGravity: true
         });
         this.matter.setExistingBody(compoundBody);
-        this.matter.setCollisionCategory(this.map.collision.fluids);
     }
     initializeEvents() {
         this.scene.matter.world.on('beforeupdate', (time, delta) => this.beforeUpdate(time, delta));
@@ -101,13 +104,13 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
     }
     sensorCollided(collision, point) {
         /*
-        if(collision.bodyA.isStatic || collision.bodyB.isStatic) {
+        if(collision.bodyA.isStatic) {
             return;
         }
         */
 
-        let bodyVelocity = collision.bodyA.parent.velocity;
-        let mass = collision.bodyA.parent.mass;
+        let bodyVelocity = collision.bodyB.parent.velocity;
+        let mass = collision.bodyB.parent.mass;
 
         let massModifier = Phaser.Math.Clamp(mass, 8, 32) / 8;
 

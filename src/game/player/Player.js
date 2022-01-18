@@ -1,10 +1,12 @@
 const Matter = Phaser.Physics.Matter.Matter;
 import Inputs from '@/game/utils/Inputs.js';
+import MapElement from '../objects/MapElement';
 
 
-export default class Player {
+export default class Player extends MapElement{
     constructor(config) {
-        this.scene = config.scene;
+        super(config);
+
         this.sprites = undefined;
         this.controller = {
             bodyHeight: undefined,
@@ -28,26 +30,25 @@ export default class Player {
             jumpHeight: undefined,
         };
 
-        this.initializeContainer(config);
-        this.initializeInputs(config);
-        this.initializePlayerController(config);
-        this.initializeEvents(config);
-        this.initializeCollisions(config);
+        this.initializeContainer();
+        this.initializeInputs();
+        this.initializePlayerController();
+        this.initializeCollisions();
 
         this.matter.setDepth(1);
     }
-    initializeContainer(config) {
-        let x = config.x;
-        let y = config.y;
+    initializeContainer() {
+        let x = this.transform.x;
+        let y = this.transform.y;
 
         this.container = this.scene.add.container(x, y, this.sprites);
     }
-    initializeInputs(config) {
+    initializeInputs() {
         this.inputs = new Inputs(this.scene);
     }
-    initializePlayerController(config) {
-        let x = config.x;
-        let y = config.y;
+    initializePlayerController() {
+        let x = this.transform.x;
+        let y = this.transform.y;
 
         let w = this.controller.bodyWidth;
         let h = this.controller.bodyHeight;
@@ -72,12 +73,7 @@ export default class Player {
         this.matter.setFixedRotation();
     }
 
-    initializeEvents(config) {
-        this.scene.matter.world.on('beforeupdate', (time, delta) => this.beforeUpdate(time, delta));
-        this.scene.events.on('update', (time, delta) => this.update(time, delta));
-    }
-
-    initializeCollisions(config) {
+    initializeCollisions() {
         this.controller.sensor.right.onCollideActiveCallback = (collision) => {
             if(collision.bodyA.isStatic || collision.bodyB.isStatic) {
                 this.controller.blocked.right = true;
@@ -89,7 +85,23 @@ export default class Player {
             }
         };
         this.controller.sensor.ground.onCollideActiveCallback = (collision) => {
-            //console.log(collision.bodyB.collisionFilter);
+            let id = this.controller.sensor.ground.id;
+            let body = undefined;
+            
+            //console.log(collision.bodyA.collisionFilter.category, collision.bodyB.collisionFilter.category);
+
+            if(collision.bodyA.id === id) 
+                body = collision.bodyB;
+            else
+                body = collision.bodyA;
+
+            let bodyCategory = body.collisionFilter.category;
+
+            if( bodyCategory === this.map.collision.objectsSensor || 
+                bodyCategory === this.map.collision.objectsGhost || 
+                bodyCategory === this.map.collision.fluids)
+                    return;
+
             this.controller.onFloor = true;
         };
     }
@@ -126,15 +138,15 @@ export default class Player {
         this.controller.blocked.left = false;
         this.controller.onFloor = false;
     }
-
     update(time, delta) {
+
         if(this.inputs.isLeftPressed()) {
             this.move(time, delta, -1);
         }
         else if(this.inputs.isRightPressed()) {
             this.move(time, delta, 1);
         }
-        else if(!this.controller.onFloor){
+        else if(!this.controller.onFloor) {
             this.stop(time, delta);
         }
         else {

@@ -1,10 +1,10 @@
-import MapObject from "./MapObject";
+import MapElement from "./MapElement";
 
 const Matter = Phaser.Physics.Matter.Matter;
 const Sprite = Phaser.GameObjects.Sprite;
 const Rectangle = Phaser.GameObjects.Rectangle;
 
-export default class Button extends MapObject {
+export default class Button extends MapElement {
     constructor(config) {
         super(config);
 

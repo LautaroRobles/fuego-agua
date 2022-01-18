@@ -1,4 +1,4 @@
-export default class MapObject {
+export default class MapElement {
     constructor(config) {
         this.scene = config.scene;
         this.config = config;
@@ -40,6 +40,16 @@ export default class MapObject {
             x: this.transform.scale.w * 1/sprite.width,
             y: this.transform.scale.h * 1/sprite.height,
         }
+    }
+    getXTransform(degree, width, height, x) {
+        let rad = degree / 180 * Math.PI;
+        let scaleX = (width * Math.cos(rad) + height * Math.sin(rad)) * 0.5;
+        return x + scaleX;
+    }
+    getYTransform(degree, width, height, y) {
+        let rad = degree / 180 * Math.PI;
+        let scaleY = (width * Math.sin(rad) - height * Math.cos(rad)) * 0.5;
+        return y + scaleY;
     }
     startUpdate() {
         this.scene.matter.world.on('beforeupdate', (time, delta) => this.beforeUpdate(time, delta));

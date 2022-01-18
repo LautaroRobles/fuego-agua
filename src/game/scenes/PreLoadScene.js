@@ -11,6 +11,9 @@ import ball from '@/game/assets/tilesets/objects/ball.png'
 import pendulum from '@/game/assets/tilesets/objects/pendulum.png'
 import leverBase from '@/game/assets/tilesets/objects/lever-base.png'
 import leverStick from '@/game/assets/tilesets/objects/lever-stick.png'
+import fanSheet from '../assets/tilesets/objects/fan-spritesheet.png'
+import fanJson from '../assets/tilesets/objects/fan-spritesheet.json'
+import weight from '../assets/tilesets/objects/weight.png'
 
 import baseTileset from '@/game/assets/tilesets/base/base.png'
 import backgroundBricks from '@/game/assets/backgrounds/bricks.png'
@@ -36,6 +39,8 @@ export default class PreLoadScene extends Scene {
         this.load.image('pendulum', pendulum)
         this.load.image('lever-base', leverBase)
         this.load.image('lever-stick', leverStick)
+        this.load.atlas('fan', fanSheet, fanJson)
+        this.load.image('weight', weight)
 
         //Load all maps
         this.loadMaps();

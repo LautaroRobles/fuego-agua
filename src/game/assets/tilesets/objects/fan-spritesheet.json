@@ -1,0 +1,135 @@
+{
+	"frames": {
+		"fan0.png": {
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 192,
+				"h": 64
+			}
+		},
+		"fan1.png": {
+			"frame": {
+				"x": 192,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 192,
+				"h": 64
+			}
+		},
+		"fan2.png": {
+			"frame": {
+				"x": 384,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 192,
+				"h": 64
+			}
+		},
+		"fan3.png": {
+			"frame": {
+				"x": 576,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 192,
+				"h": 64
+			}
+		},
+		"fan4.png": {
+			"frame": {
+				"x": 768,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 192,
+				"h": 64
+			}
+		},
+		"fan5.png": {
+			"frame": {
+				"x": 960,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 192,
+				"h": 64
+			},
+			"sourceSize": {
+				"w": 192,
+				"h": 64
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1152,
+			"h": 64
+		},
+		"scale": "1"
+	}
+}

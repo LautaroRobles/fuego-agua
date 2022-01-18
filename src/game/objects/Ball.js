@@ -1,6 +1,6 @@
-import MapObject from "./MapObject";
+import MapElement from "./MapElement";
 
-export default class Ball extends MapObject{
+export default class Ball extends MapElement{
     constructor(config) {
         super(config);
 

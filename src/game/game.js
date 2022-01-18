@@ -5,8 +5,8 @@ import PreLoadScene from "./scenes/PreLoadScene";
 function launch(containerId) {
   return new Phaser.Game({
     type: Phaser.WEBGL,
-    width: 1024,
-    height: 1024,
+    width: 1200,
+    height: 900,
     backgroundColor: '#efefef',
     parent: containerId,
     physics: {

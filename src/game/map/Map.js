@@ -4,8 +4,12 @@ import Lever from "../objects/Lever";
 import Ball from "../objects/Ball";
 import Water from "../fluids/Water";
 import Lava from "../fluids/Lava";
+import Dark from "../fluids/Dark";
 import Platform from "../objects/Platform";
 import Pendulum from "../objects/Pendulum";
+import Fuego from "../player/Fuego";
+import Fan from "../objects/Fan";
+import Weight from "../objects/Weight";
 
 export default class Map {
     constructor(config) {
@@ -16,6 +20,9 @@ export default class Map {
         this.collisionCategories();
         this.layout();
         this.objects();
+        this.loadActivators();
+
+        this.startUpdate();
     }
     collisionCategories() {
         this.collision = {};
@@ -35,11 +42,17 @@ export default class Map {
         this.scene.matter.world.convertTilemapLayer(this.layer);
         this.scene.matter.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels, 32, true, true, false, true);
 
-        this.scene.cameras.main.setZoom(0.5);
+        this.scene.cameras.main.setZoom(0.46875);
         this.scene.cameras.main.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels);
 
         this.mapShader = this.scene.add.shader('map-shader', this.map.widthInPixels / 2, this.map.heightInPixels / 2, this.map.widthInPixels, this.map.heightInPixels);
         this.backgroundShader = this.scene.add.shader('background-shader', this.map.widthInPixels / 2, this.map.heightInPixels / 2, this.map.widthInPixels, this.map.heightInPixels);
+
+        // Permitir texturas que no sean multiplo de 2
+        let gl = this.mapShader.gl;
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
 
         this.rt = this.scene.add.renderTexture(0, 0, this.map.widthInPixels, this.map.heightInPixels);
         this.rt.draw(this.layer, 0, 0);
@@ -48,10 +61,10 @@ export default class Map {
 
         this.mapShader.setChannel0('background-bricks');
         this.mapShader.setChannel1('map-texture');
-        this.mapShader.setUniform('tiling.value', 16);
+        this.mapShader.setUniform('tiling.value', 15);
 
         this.backgroundShader.setChannel0('background-bricks');
-        this.backgroundShader.setUniform('tiling.value', 16);
+        this.backgroundShader.setUniform('tiling.value', 15);
         this.backgroundShader.setUniform('darken.value', 0.5);
 
         this.backgroundShader.setDepth(0);
@@ -59,32 +72,17 @@ export default class Map {
     }
     objects() {
         this.customObjects = [];
+        this.players = [];
 
-        const fluidLayer = 0;
-        const objectLayer = 1;
-
-        this.map.objects[objectLayer].objects.forEach(
-            object => {
-                let customObject = this.createObject(object);
-                if(customObject !== undefined) {
-                    this.customObjects.push(customObject)
-                }
-            }
-        )
-        
-        this.map.objects[fluidLayer].objects.forEach(
-            object => {
-                let customObject = this.createObject(object);
-                if(customObject !== undefined) {
-                    this.customObjects.push(customObject)
-                }
-            }
-        )
+        this.map.objects.forEach(layer => {
+            layer.objects.forEach(object => this.addObject(object))
+        })
 
         // when all objects are finished creating it calls mapLoaded to each object
         this.customObjects.forEach(object => {if(object.mapLoaded) object.mapLoaded()})
+        this.players.forEach(player => {if(player.mapLoaded) player.mapLoaded()})
     }
-    createObject(object) {
+    addObject(object) {
         object.scene = this.map.scene;
         object.map = this;
 
@@ -100,22 +98,81 @@ export default class Map {
         object.properties = properties;
 
         switch(object.type) {
+            // objects
             case "ball":
-                return new Ball(object)
+                this.customObjects.push(new Ball(object));
+                break;
             case "box":
-                return new Box(object);
+                this.customObjects.push(new Box(object));
+                break;
             case "button":
-                return new Button(object);
+                this.customObjects.push(new Button(object));
+                break;
             case "lever":
-                return new Lever(object);
+                this.customObjects.push(new Lever(object));
+                break;
             case "platform":
-                return new Platform(object);
+                this.customObjects.push(new Platform(object));
+                break;
             case "pendulum":
-                return new Pendulum(object);
+                this.customObjects.push(new Pendulum(object));
+                break;
+            case "fan":
+                this.customObjects.push(new Fan(object));
+                break;
+            case "weight":
+                this.customObjects.push(new Weight(object));
+                break;
+            
+            // fluids
             case "water":
-                return new Water(object);
+                this.customObjects.push(new Water(object));
+                break;
             case "lava":
-                return new Lava(object);
+                this.customObjects.push(new Lava(object));
+                break;
+            case "dark":
+                this.customObjects.push(new Dark(object));
+                break;
+
+            // players
+            case "fuego-spawn":
+                this.players.push(new Fuego(object));
+        }
+    }
+    loadActivators() {
+        this.activators = {};
+        this.actuators = {};
+
+        this.customObjects.forEach(object => {
+            if(object.properties !== undefined && object.properties.activates !== undefined) {
+                let activatesID = object.properties.activates;
+
+                if(this.activators[activatesID] === undefined)
+                    this.activators[activatesID] = [];
+
+                this.activators[activatesID].push(object);
+            }
+            if(object.properties !== undefined && object.properties.activationID !== undefined) {
+                let activationID = object.properties.activationID;
+
+                if(this.actuators[activationID] === undefined)
+                    this.actuators[activationID] = [];
+
+                this.actuators[activationID].push(object);
+            }
+        });
+    }
+    startUpdate() {
+        this.scene.matter.world.on('beforeupdate', (time, delta) => this.beforeUpdate(time, delta));
+        this.scene.events.on('update', (time, delta) => this.update(time, delta));
+    }
+    beforeUpdate(time, delta) {}
+    update(time, delta) {
+        // handle activators   
+        for(let activationID in this.activators) {
+            let activated = this.activators[activationID].some(activator => activator.activated);
+            this.actuators[activationID].forEach(actuator => actuator.activated = activated);
         }
     }
 }

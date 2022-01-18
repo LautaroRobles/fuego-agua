@@ -1,8 +1,8 @@
-import MapObject from "./MapObject";
+import MapElement from "./MapElement";
 
 const Rectangle = Phaser.GameObjects.Rectangle;
 
-export default class Pendulum extends MapObject {
+export default class Pendulum extends MapElement {
     constructor(config) {
         super(config);
 
@@ -15,7 +15,7 @@ export default class Pendulum extends MapObject {
             
         let swingHeight = this.properties.swingHeight;
 
-        let anchorSprite = this.scene.add.rectangle(x, y - swingHeight, 16, 16, 0x251201, 1);
+        let anchorSprite = this.scene.add.circle(x, y - swingHeight, 20, 0x251201, 1);
         let rope = this.scene.add.rectangle(x, y - swingHeight / 2, 16, swingHeight, 0x251201, 1);
         let platformSprite = this.scene.add.sprite(x, y, 'pendulum');
 

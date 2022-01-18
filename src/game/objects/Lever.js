@@ -1,6 +1,6 @@
-import MapObject from "./MapObject";
+import MapElement from "./MapElement";
 
-export default class Lever extends MapObject{
+export default class Lever extends MapElement{
     constructor(config) {
         super(config);
 

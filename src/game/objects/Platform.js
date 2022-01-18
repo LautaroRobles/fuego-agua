@@ -1,10 +1,10 @@
-import MapObject from "./MapObject";
+import MapElement from "./MapElement";
 
 const Matter = Phaser.Physics.Matter.Matter;
 const Sprite = Phaser.GameObjects.Sprite;
 const Rectangle = Phaser.GameObjects.Rectangle;
 
-export default class Platform extends MapObject{
+export default class Platform extends MapElement{
     constructor(config) {
         super(config);
 
@@ -15,7 +15,7 @@ export default class Platform extends MapObject{
         this.angleStart = this.config.rotation;
         this.angleHelper = this.config.rotation;
 
-        this.activators = [];
+        //this.activators = [];
 
         this.createPlatformSprites();
         this.createPlatformBody();
@@ -56,6 +56,7 @@ export default class Platform extends MapObject{
         this.setMatterScale(this.matter, this.sprites[1]);
         this.matter.angle = this.transform.rotation;
     }
+    /*
     mapLoaded() {
         let mapObjects = this.map.customObjects;
         for(let i = 0; i < mapObjects.length; i++) {
@@ -78,11 +79,10 @@ export default class Platform extends MapObject{
             }
         }
     }
-    beforeUpdate() {
-
-    }
+    */
     update(time, delta) {
 
+        /*
         if(this.activators.length > 0) {
             let activated = false;
             this.activators.forEach(activator => {
@@ -98,6 +98,7 @@ export default class Platform extends MapObject{
             })
             this.activated = activated;
         }
+        */
 
         let positionEpsilon = 5;
         let rotationEpsilon = 2;
