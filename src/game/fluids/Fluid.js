@@ -25,7 +25,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
     }
     createFluidShape() {
 
-        let pointWidth = 32;
+        let pointWidth = 16;
         let fluidPoints = this.config.width / pointWidth;
 
         this.points = [];
@@ -56,7 +56,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
 
         this.matter = this.scene.matter.add.gameObject(this);
 
-        let pointWidth = 32;
+        let pointWidth = 16;
         let fluidPoints = this.config.width / pointWidth;
 
         for(let i = 0; i < fluidPoints; i++) {
@@ -88,7 +88,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
 
     }
     update(time, delta) {
-        this.fluidPhysics();
+        this.fluidPhysics(time, delta);
 
         this.fluidGraphics.clear();
         this.fluidGraphics.fillStyle(this.fluidData.color);
@@ -131,7 +131,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
             this.pointsData[i].height += this.pointsData[i].velocity;
             this.pointsData[i].velocity += acceleration;
 
-            this.points[i][1] = this.pointsData[i].height;
+            this.points[i][1] = this.pointsData[i].height + (Math.abs(Math.sin((i + time / 200) * 0.5)) - 0.5) * 6;
         }
 
         // propagation

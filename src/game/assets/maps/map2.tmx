@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="64" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="288">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="64" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="290">
  <editorsettings>
   <export target="export/map2.json" format="json"/>
  </editorsettings>
@@ -16,10 +16,13 @@
   <object id="281" gid="27" x="1472" y="1088" width="448" height="64"/>
  </objectgroup>
  <layer id="1" name="layout" width="40" height="30">
+  <properties>
+   <property name="background" type="file" value="../backgrounds/pattern.png"/>
+  </properties>
   <data encoding="csv">
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
 3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
-3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
+3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,
 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,
@@ -58,12 +61,12 @@
     <property name="speed" type="float" value="1"/>
    </properties>
   </object>
-  <object id="273" name="1" gid="18" x="1472" y="1344" width="128" height="32">
+  <object id="273" name="1" gid="18" x="1984" y="1344" width="128" height="32">
    <properties>
     <property name="activates" type="int" value="1"/>
    </properties>
   </object>
-  <object id="274" name="1" gid="18" x="832" y="1344" width="128" height="32">
+  <object id="274" name="1" gid="18" x="384" y="1344" width="128" height="32">
    <properties>
     <property name="activates" type="int" value="1"/>
    </properties>
@@ -88,5 +91,6 @@
     <property name="activates" type="int" value="2"/>
    </properties>
   </object>
+  <object id="288" gid="29" x="192" y="1856" width="128" height="128"/>
  </objectgroup>
 </map>

@@ -9,7 +9,12 @@ export default class TestScene extends Scene {
         super({key: 'TestScene'});
     }
     create() {
-        new Map({scene: this, key: 'map2'})
+        let playerConfig = {
+            fuego: 1,
+            agua: 2
+        }
+
+        new Map({scene: this, key: 'map2', playerConfig: playerConfig})
     }
     update(time, delta) {
         super.update(time, delta);

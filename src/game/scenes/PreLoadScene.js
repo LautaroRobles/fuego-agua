@@ -1,16 +1,19 @@
 import { Scene } from 'phaser'
 import fuegoCuerpo from '@/game/assets/players/fuego/fuego-cuerpo.png'
 import fuegoCuerpoJson from '@/game/assets/players/fuego/fuego-cuerpo.json'
+import fuegoCabeza from '@/game/assets/players/fuego/fuego-cabeza.png'
+import fuegoCabezaJson from '@/game/assets/players/fuego/fuego-cabeza.json'
 import fireHead from '@/game/assets/players/fire-head.png'
 import fireBody from '@/game/assets/players/fire-body.png'
+import fuego from '../assets/players/fuego/fuego-editor.png'
 
-import box from '@/game/assets/tilesets/objects/stone.png'
-import button from '@/game/assets/tilesets/objects/button.png'
-import platform from '@/game/assets/tilesets/objects/platform.png'
-import ball from '@/game/assets/tilesets/objects/ball.png'
-import pendulum from '@/game/assets/tilesets/objects/pendulum.png'
-import leverBase from '@/game/assets/tilesets/objects/lever-base.png'
-import leverStick from '@/game/assets/tilesets/objects/lever-stick.png'
+import box from '../assets/tilesets/objects/stone.png'
+import button from '../assets/tilesets/objects/button.png'
+import platform from '../assets/tilesets/objects/platform.png'
+import ball from '../assets/tilesets/objects/ball.png'
+import pendulum from '../assets/tilesets/objects/pendulum.png'
+import leverBase from '../assets/tilesets/objects/lever-base.png'
+import leverStick from '../assets/tilesets/objects/lever-stick.png'
 import fanSheet from '../assets/tilesets/objects/fan-spritesheet.png'
 import fanJson from '../assets/tilesets/objects/fan-spritesheet.json'
 import weight from '../assets/tilesets/objects/weight.png'
@@ -28,8 +31,9 @@ export default class PreLoadScene extends Scene {
     }
     preload () {
         // Jugadores
-        this.load.image('fuego-cabeza', fireHead)
+        this.load.atlas('fuego-cabeza', fuegoCabeza, fuegoCabezaJson)
         this.load.atlas('fuego-cuerpo', fuegoCuerpo, fuegoCuerpoJson)
+        this.load.image('fuego-test', fuego)
 
         //Objects
         this.load.image('box', box)

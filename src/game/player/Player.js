@@ -29,6 +29,7 @@ export default class Player extends MapElement{
             maxSpeed: undefined,
             jumpHeight: undefined,
         };
+        this.playerNumber = config.playerNumber;
 
         this.initializeContainer();
         this.initializeInputs();
@@ -44,7 +45,7 @@ export default class Player extends MapElement{
         this.container = this.scene.add.container(x, y, this.sprites);
     }
     initializeInputs() {
-        this.inputs = new Inputs(this.scene);
+        this.inputs = new Inputs(this.scene, this.playerNumber);
     }
     initializePlayerController() {
         let x = this.transform.x;
@@ -55,7 +56,11 @@ export default class Player extends MapElement{
 
         this.matter = this.scene.matter.add.gameObject(this.container);
 
-        this.controller.playerBody = Matter.Bodies.rectangle(x, y, w, h, { chamfer: { radius: w / 2} });
+        this.controller.playerBody = Matter.Bodies.rectangle(x, y, w, h, { chamfer: { radius: w / 2}, 
+            collisionFilter: {
+                category: this.map.collision.players
+            } 
+        });
         this.controller.sensor.ground = Matter.Bodies.rectangle(x, y + h / 2, 20, 10, { isSensor: true });
         this.controller.sensor.left = Matter.Bodies.rectangle(x - w / 2, y, 20, h / 2, { isSensor: true });
         this.controller.sensor.right = Matter.Bodies.rectangle(x + w / 2, y, 20, h / 2, { isSensor: true });
@@ -71,6 +76,15 @@ export default class Player extends MapElement{
 
         this.matter.setExistingBody(compoundBody);
         this.matter.setFixedRotation();
+        this.matter.setCollisionCategory(this.map.collision.players);
+        this.matter.setCollidesWith([
+            1,
+            this.map.collision.layout,
+            this.map.collision.objects,
+            this.map.collision.objectsSensor,
+            this.map.collision.objectsGhost,
+            this.map.collision.fluids
+        ]);
     }
 
     initializeCollisions() {

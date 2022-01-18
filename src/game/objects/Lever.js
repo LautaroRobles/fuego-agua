@@ -29,8 +29,8 @@ export default class Lever extends MapElement{
         let x = this.transform.x;
         let y = this.transform.y;
 
-        let freeSprite = this.scene.add.rectangle(x, y, 64, 64, 0x00ff00);
-        let anchorSprite = this.scene.add.rectangle(x, y, 32, 32, 0xff0000);
+        let freeSprite = this.scene.add.circle(x, y, 32, 0x00ff00);
+        let anchorSprite = this.scene.add.circle(x, y, 32, 0xff0000);
 
         anchorSprite.setVisible(false);
         freeSprite.setVisible(false);

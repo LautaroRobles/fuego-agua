@@ -56,19 +56,19 @@
             "scaleInEditor": 1.5
         },
         "maps/map1.tmx": {
-            "scale": 0.125,
+            "scale": 0.25,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 564,
-                "y": 836
+                "x": 1354,
+                "y": 966
             }
         },
         "maps/map2.tmx": {
             "scale": 0.25,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1330,
-                "y": 1254
+                "x": 1246,
+                "y": 938
             }
         },
         "maps/objects.tsx": {
@@ -119,7 +119,7 @@
     },
     "last.exportedFilePath": "C:/Users/Lauti/Proyectos/fuego-agua/src/game/assets/maps/export",
     "last.externalTilesetPath": "C:/Users/Lauti/Proyectos/fuego-agua/src/game/assets/tilesets",
-    "last.imagePath": "C:/Users/Lauti/Proyectos/fuego-agua/src/game/assets/tilesets/objects",
+    "last.imagePath": "C:/Users/Lauti/Proyectos/fuego-agua/src/game/assets/players/fuego",
     "map.height": 32,
     "map.lastUsedExportFilter": "Archivos de mapa JSON (*.json)",
     "map.lastUsedFormat": "tmx",
@@ -130,7 +130,7 @@
         "maps/map1.tmx"
     ],
     "project": "fuego-agua.tiled-project",
-    "property.type": "object",
+    "property.type": "file",
     "recentFiles": [
         "tilesets/fluids.tsx",
         "tilesets/objects.tsx",

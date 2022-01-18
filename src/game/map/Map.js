@@ -14,6 +14,7 @@ import Weight from "../objects/Weight";
 export default class Map {
     constructor(config) {
         this.scene = config.scene;
+        this.playerConfig = config.playerConfig;
 
         this.map = this.scene.make.tilemap({key: config.key});
 
@@ -39,6 +40,7 @@ export default class Map {
 
         // Set up the layer to have matter bodies. Any colliding tiles will be given a Matter body.
         this.map.setCollisionByProperty({ collides: true });
+        //this.scene.matter.world.setCollisionCategory(this.collision.layout);
         this.scene.matter.world.convertTilemapLayer(this.layer);
         this.scene.matter.world.setBounds(0, 0, this.map.widthInPixels, this.map.heightInPixels, 32, true, true, false, true);
 
@@ -59,16 +61,18 @@ export default class Map {
         this.rt.setDepth(0);
         this.rt.saveTexture('map-texture');
 
-        this.mapShader.setChannel0('background-bricks');
+        this.mapShader.setChannel0('background-pattern');
         this.mapShader.setChannel1('map-texture');
         this.mapShader.setUniform('tiling.value', 15);
 
-        this.backgroundShader.setChannel0('background-bricks');
+        this.backgroundShader.setChannel0('background-pattern');
         this.backgroundShader.setUniform('tiling.value', 15);
         this.backgroundShader.setUniform('darken.value', 0.5);
 
         this.backgroundShader.setDepth(0);
         this.mapShader.setDepth(3);
+        
+        console.log(this);
     }
     objects() {
         this.customObjects = [];
@@ -136,8 +140,14 @@ export default class Map {
                 break;
 
             // players
-            case "fuego-spawn":
+            case "fuego":
+                object.playerNumber = this.playerConfig["fuego"];
                 this.players.push(new Fuego(object));
+                break;
+            case "agua":
+                object.playerNumber = this.playerConfig["agua"];
+                this.players.push(new Fuego(object));
+                break;
         }
     }
     loadActivators() {

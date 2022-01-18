@@ -7,9 +7,9 @@ export default class Dark extends Fluid {
     }
     created() {
         this.fluidData = {
-            k: 0.4,
-            d: 0.45,
-            s: 0.3,
+            k: 0.05,
+            d: 0.15,
+            s: 0.5,
             color: 0x63dd17,
             alpha: 1
         }

@@ -1,24 +1,32 @@
 export default class Inputs {
-    constructor(scene) {
+    constructor(scene, player) {
         this.input = scene.input;
 
-        this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
-        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
-        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
-        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S)
+        this.loadInputConfig(player);
+    }
+    loadInputConfig(player) {
+        let P1 = {};
+        let P2 = {};
 
-        this.keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
-        this.keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
-        this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)
-        this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)
+        P1.LEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
+        P1.RIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D)
+        P1.UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W)
+
+        P2.LEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT)
+        P2.RIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT)
+        P2.UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)
+
+        const players = [undefined, P1, P2];
+
+        this.inputs = players[player];
     }
     isLeftPressed() {
-        return this.keyA.isDown || this.keyLeft.isDown;
+        return this.inputs.LEFT.isDown;
     }
     isRightPressed() {
-        return this.keyD.isDown || this.keyRight.isDown;
+        return this.inputs.RIGHT.isDown;
     }
     isUpPressed() {
-        return this.keyW.isDown || this.keyUp.isDown;
+        return this.inputs.UP.isDown;
     }
 }
