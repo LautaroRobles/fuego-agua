@@ -1,13 +1,14 @@
 import Phaser from 'phaser'
-import TestScene from "./scenes/TestScene";
-import PreLoadScene from "./scenes/PreLoadScene";
+import Preload from "./scenes/Preload";
+import MainMenu from "./scenes/MainMenu";
+import Test from "./scenes/Test";
 
 function launch(containerId) {
   return new Phaser.Game({
     type: Phaser.WEBGL,
     width: 1200,
     height: 900,
-    backgroundColor: '#efefef',
+    backgroundColor: '#000',
     parent: containerId,
     physics: {
       default: 'matter',
@@ -24,7 +25,7 @@ function launch(containerId) {
         */
       }
     },
-    scene: [PreLoadScene, TestScene]
+    scene: [Preload, MainMenu, Test]
   })
 }
 

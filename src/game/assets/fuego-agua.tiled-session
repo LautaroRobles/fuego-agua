@@ -5,9 +5,9 @@
     },
     "activeFile": "maps/map1.tmx",
     "expandedProjectPaths": [
-        "maps",
+        "tilesets",
         ".",
-        "tilesets"
+        "maps"
     ],
     "fileStates": {
         "": {
@@ -57,10 +57,10 @@
         },
         "maps/map1.tmx": {
             "scale": 0.25,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 1354,
-                "y": 966
+                "x": 918,
+                "y": 806
             }
         },
         "maps/map2.tmx": {
@@ -69,6 +69,14 @@
             "viewCenter": {
                 "x": 1246,
                 "y": 938
+            }
+        },
+        "maps/menu.tmx": {
+            "scale": 0.23712890625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1284.111687669879,
+                "y": 963.6109051972655
             }
         },
         "maps/objects.tsx": {
@@ -132,13 +140,14 @@
     "project": "fuego-agua.tiled-project",
     "property.type": "file",
     "recentFiles": [
+        "maps/map1.tmx",
+        "maps/menu.tmx",
+        "maps/map2.tmx",
+        "tilesets/players.tsx",
         "tilesets/fluids.tsx",
         "tilesets/objects.tsx",
-        "maps/map2.tmx",
         "tilesets/base.tsx",
-        "tilesets/players.tsx",
         "maps/level-test.tmx",
-        "maps/map1.tmx",
         "maps/base.tsx",
         "maps/empty.tmx"
     ],

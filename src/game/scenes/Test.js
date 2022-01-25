@@ -1,12 +1,9 @@
 import { Scene } from 'phaser';
-import Player from "@/game/player/Player";
-import Box from "@/game/objects/Box";
-import Fuego from "../player/Fuego";
 import Map from "@/game/map/Map";
 
-export default class TestScene extends Scene {
+export default class Test extends Scene {
     constructor() {
-        super({key: 'TestScene'});
+        super({key: 'Test'});
     }
     create() {
         let playerConfig = {

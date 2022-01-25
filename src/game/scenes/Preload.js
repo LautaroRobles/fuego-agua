@@ -25,9 +25,9 @@ import backgroundPattern from '@/game/assets/backgrounds/pattern.png'
 /*
 Scene for importing assets to the game
  */
-export default class PreLoadScene extends Scene {
+export default class Preload extends Scene {
     constructor () {
-        super({ key: 'BootScene' })
+        super({ key: 'Preload' })
     }
     preload () {
         // Jugadores
@@ -59,7 +59,7 @@ export default class PreLoadScene extends Scene {
     }
     create () {
         // I think next scene should be something like 'MenuScene'
-        this.scene.start('TestScene')
+        this.scene.start('MainMenu')
     }
     loadMaps() {
         const context = require.context('../assets/maps/export', true, /.json$/);

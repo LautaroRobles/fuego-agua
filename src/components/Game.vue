@@ -28,9 +28,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
 .placeholder {
   font-size: 2rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: Dongle, Arial;
   color: white;
 }
 #game-container {
