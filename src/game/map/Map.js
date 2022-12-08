@@ -10,6 +10,7 @@ import Pendulum from "../objects/Pendulum";
 import Fuego from "../player/Fuego";
 import Fan from "../objects/Fan";
 import Weight from "../objects/Weight";
+import Agua from "../player/Agua";
 
 export default class Map {
     constructor(config) {
@@ -61,12 +62,12 @@ export default class Map {
         this.rt.setDepth(0);
         this.rt.saveTexture('map-texture');
 
-        this.mapShader.setChannel0('background-pattern');
+        this.mapShader.setChannel0('background-stone');
         this.mapShader.setChannel1('map-texture');
-        this.mapShader.setUniform('tiling.value', 15);
+        this.mapShader.setUniform('tiling.value', 7.5);
 
-        this.backgroundShader.setChannel0('background-pattern');
-        this.backgroundShader.setUniform('tiling.value', 15);
+        this.backgroundShader.setChannel0('background-stone');
+        this.backgroundShader.setUniform('tiling.value', 7.5);
         this.backgroundShader.setUniform('darken.value', 0.5);
 
         this.backgroundShader.setDepth(0);
@@ -146,7 +147,7 @@ export default class Map {
                 break;
             case "agua":
                 object.playerNumber = this.playerConfig["agua"];
-                this.players.push(new Fuego(object));
+                this.players.push(new Agua(object));
                 break;
         }
     }

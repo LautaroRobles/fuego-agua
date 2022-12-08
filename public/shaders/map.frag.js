@@ -16,8 +16,9 @@ uniform vec2 resolution;
 varying vec2 fragCoord;
 
 vec4 tiles() {
-    vec2 offset = vec2(0.25, 0);
-    vec2 tilesTexcoord = (fragCoord.xy / resolution.y + offset) * tiling;
+    vec2 offset = vec2(0, 0);
+    vec2 fragCoordFlipVertical = vec2(fragCoord.x, 1.0 - fragCoord.y);
+    vec2 tilesTexcoord = (fragCoordFlipVertical.xy / resolution.y + offset) * tiling;
     vec4 tiles = texture2D(iChannel0, tilesTexcoord);
 
     vec2 mapTexcoord = (fragCoord.xy / resolution.xy);

@@ -1,7 +1,7 @@
 import Player from "./Player";
 const Sprite = Phaser.GameObjects.Sprite;
 
-export default class Fuego extends Player {
+export default class Agua extends Player {
     constructor(config) {
         super(config);
 
@@ -11,17 +11,17 @@ export default class Fuego extends Player {
         
         this.createAnimations();
 
-        let head = new Sprite(this.scene, 0, 0, 'fuego-cabeza');
-        let body = new Sprite(this.scene, 0, 0, 'fuego-cuerpo');
+        let head = new Sprite(this.scene, 0, 0, 'agua-cabeza');
+        let body = new Sprite(this.scene, 0, 0, 'agua-cuerpo');
 
-        let test = new Sprite(this.scene, 0, 0, 'fuego-test');
+        let test = new Sprite(this.scene, 0, 0, 'agua-test');
 
         this.scene.add.existing(head);
         this.scene.add.existing(body);
         this.scene.add.existing(test);
 
-        head.play('fuego-idle-cabeza', true);
-        body.play('fuego-idle-cuerpo', true);
+        head.play('agua-idle-cabeza', true);
+        body.play('agua-idle-cuerpo', true);
 
         this.sprites = [head, body, test];
 
@@ -32,28 +32,28 @@ export default class Fuego extends Player {
         this.animations = {};
 
         this.animations.runCabeza = this.animations.runCuerpo = this.scene.anims.create({
-            key: 'fuego-run-cabeza',
-            frames: this.scene.anims.generateFrameNames('fuego-cabeza', { prefix: 'correr', suffix: '.png', start: 1, end: 5 }), 
+            key: 'agua-run-cabeza',
+            frames: this.scene.anims.generateFrameNames('agua-cabeza', { prefix: 'correr', suffix: '.png', start: 1, end: 5 }), 
             repeat: -1,
             frameRate: 18
         })
         
         this.animations.runCabeza = this.animations.runCuerpo = this.scene.anims.create({
-            key: 'fuego-idle-cabeza',
-            frames: this.scene.anims.generateFrameNames('fuego-cabeza', { prefix: 'frente', suffix: '.png', start: 1, end: 1 }), 
+            key: 'agua-idle-cabeza',
+            frames: this.scene.anims.generateFrameNames('agua-cabeza', { prefix: 'frente', suffix: '.png', start: 1, end: 1 }), 
             repeat: -1
         })
 
         this.animations.runCuerpo = this.scene.anims.create({
-            key: 'fuego-run-cuerpo',
-            frames: this.scene.anims.generateFrameNames('fuego-cuerpo', { prefix: 'correr', suffix: '.png', start: 1, end: 6 }), 
+            key: 'agua-run-cuerpo',
+            frames: this.scene.anims.generateFrameNames('agua-cuerpo', { prefix: 'correr', suffix: '.png', start: 1, end: 6 }), 
             repeat: -1,
             frameRate: 18
         })
 
         this.animations.idleCuerpo = this.scene.anims.create({
-            key: 'fuego-idle-cuerpo',
-            frames: this.scene.anims.generateFrameNames('fuego-cuerpo', { prefix: 'frente', suffix: '.png', start: 1, end: 1 }), 
+            key: 'agua-idle-cuerpo',
+            frames: this.scene.anims.generateFrameNames('agua-cuerpo', { prefix: 'frente', suffix: '.png', start: 1, end: 1 }), 
             repeat: -1,
         })
     }
@@ -80,17 +80,17 @@ export default class Fuego extends Player {
 
         // Head angle
         if(this.inputs.isLeftPressed() || this.inputs.isRightPressed()) {
-            body.anims.play('fuego-run-cuerpo', true);
-            head.anims.play('fuego-run-cabeza', true);
+            body.anims.play('agua-run-cuerpo', true);
+            head.anims.play('agua-run-cabeza', true);
             head.angle = Math.atan2(velocityY, Math.abs(velocityX)) * 180 / Math.PI * -head.scaleX;
             test.setVisible(false)
         }
         else {
             body.scaleX = 1;
-            body.anims.play('fuego-idle-cuerpo', true);
+            body.anims.play('agua-idle-cuerpo', true);
             head.angle = 0;
             head.scaleX = 1;
-            head.anims.play('fuego-idle-cabeza', true);
+            head.anims.play('agua-idle-cabeza', true);
             test.setVisible(false)
         }
 

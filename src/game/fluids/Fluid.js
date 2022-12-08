@@ -124,6 +124,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
         let s = this.fluidData.s;
 
         for(let i = 1; i < this.points.length - 3; i++) {
+
             let y = this.pointsData[i].height - targetHeight;
             let loss = -d * this.pointsData[i].velocity;
             let acceleration = -k * y + loss;
@@ -131,7 +132,7 @@ export default class Fluid extends Phaser.GameObjects.GameObject{
             this.pointsData[i].height += this.pointsData[i].velocity;
             this.pointsData[i].velocity += acceleration;
 
-            this.points[i][1] = this.pointsData[i].height + (Math.abs(Math.sin((i + time / 200) * 0.5)) - 0.5) * 6;
+            this.points[i][1] = this.pointsData[i].height + (Math.abs(Math.sin((i + time / 200) * 0.5)) - 0.5) * 4;
         }
 
         // propagation

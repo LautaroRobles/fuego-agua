@@ -10,6 +10,7 @@ function launch(containerId) {
     height: 900,
     backgroundColor: '#000',
     parent: containerId,
+    pixelArt: false,
     physics: {
       default: 'matter',
       matter: {

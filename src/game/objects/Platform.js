@@ -56,49 +56,7 @@ export default class Platform extends MapElement{
         this.setMatterScale(this.matter, this.sprites[1]);
         this.matter.angle = this.transform.rotation;
     }
-    /*
-    mapLoaded() {
-        let mapObjects = this.map.customObjects;
-        for(let i = 0; i < mapObjects.length; i++) {
-
-            let object = mapObjects[i];
-
-            if(object.config && object.properties && object.config.type && object.properties.activates) {
-                let type = object.config.type;
-                let activates = object.properties.activates;
-
-                if(activates != this.properties.activationID)
-                    continue;
-
-                switch (type) {
-                    case "lever":
-                    case "button":
-                        this.activators.push(object);
-                        break;
-                }
-            }
-        }
-    }
-    */
     update(time, delta) {
-
-        /*
-        if(this.activators.length > 0) {
-            let activated = false;
-            this.activators.forEach(activator => {
-                let type = activator.config.type;
-                switch (type) {
-                    case "button":
-                        activated = activated || activator.activated
-                        break;
-                    case "lever":
-                        activated = activated || activator.activated
-                        break;
-                }
-            })
-            this.activated = activated;
-        }
-        */
 
         let positionEpsilon = 5;
         let rotationEpsilon = 2;
@@ -131,7 +89,7 @@ export default class Platform extends MapElement{
 
     transitionTo(value, start, move, delta, epsilon) {
         if(Math.abs(value - (start + move)) > epsilon)
-            value += delta * Math.sign(move) * 0.1 * this.properties.speed;
+            value += Math.sign(move) * this.properties.speed;
         else
             value = start + move;
 

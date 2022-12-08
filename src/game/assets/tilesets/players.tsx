@@ -5,6 +5,6 @@
   <image width="128" height="128" source="../players/fuego/fuego-editor.png"/>
  </tile>
  <tile id="1" type="agua">
-  <image width="128" height="128" source="../players/fuego/fuego-editor.png"/>
+  <image width="128" height="128" source="../players/agua/agua-editor.png"/>
  </tile>
 </tileset>
