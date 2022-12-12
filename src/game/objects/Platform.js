@@ -50,7 +50,7 @@ export default class Platform extends MapElement{
             bodyY, 
             bodyWidth, 
             bodyHeight, 
-            {isStatic: true, frictionStatic: Infinity}
+            {isStatic: true, frictionStatic: 0}
         ))
         this.matter.setCollisionCategory(this.map.collision.objects);
         this.setMatterScale(this.matter, this.sprites[1]);
@@ -58,40 +58,45 @@ export default class Platform extends MapElement{
     }
     update(time, delta) {
 
-        let positionEpsilon = 5;
-        let rotationEpsilon = 2;
-
         if(this.properties.moveX === undefined) this.properties.moveX = 0;
         if(this.properties.moveY === undefined) this.properties.moveY = 0;
-        if(this.properties.rotate === undefined) this.properties.rotate = 0;
+        if (this.properties.rotate === undefined) this.properties.rotate = 0;
+        
+        this.activated = this.properties.invertedActivation ? !this.activated : this.activated;
 
         let xEnd = this.xStart + this.properties.moveX;
         let yEnd = this.yStart + this.properties.moveY;
         let angleEnd = this.angleStart + this.properties.rotate;
 
         if(this.activated) {
-            let nextX = this.transitionTo(this.container.x, this.xStart, this.properties.moveX, delta, positionEpsilon);
+            let nextX = this.transitionTo(this.container.x, this.xStart, this.properties.moveX, delta);
             this.matter.setVelocityX(nextX - this.container.x);
             this.container.x = nextX;
-            this.container.y = this.transitionTo(this.container.y, this.yStart, this.properties.moveY, delta, positionEpsilon);
-            this.angleHelper = this.transitionTo(this.angleHelper, this.angleStart, this.properties.rotate, delta, rotationEpsilon);
+            this.container.y = this.transitionTo(this.container.y, this.yStart, this.properties.moveY, delta);
+            this.angleHelper = this.transitionTo(this.angleHelper, this.angleStart, this.properties.rotate, delta);
             this.container.angle = this.angleHelper;
         }
         else if(!this.activated){
-            let nextX = this.transitionTo(this.container.x, xEnd, -this.properties.moveX, delta, positionEpsilon);
+            let nextX = this.transitionTo(this.container.x, xEnd, -this.properties.moveX, delta);
             this.matter.setVelocityX(nextX - this.container.x);
             this.container.x = nextX;
-            this.container.y = this.transitionTo(this.container.y, yEnd, -this.properties.moveY, delta, positionEpsilon);
-            this.angleHelper = this.transitionTo(this.angleHelper, angleEnd, -this.properties.rotate, delta, rotationEpsilon);
+            this.container.y = this.transitionTo(this.container.y, yEnd, -this.properties.moveY, delta);
+            this.angleHelper = this.transitionTo(this.angleHelper, angleEnd, -this.properties.rotate, delta);
             this.container.angle = this.angleHelper;
         }
     }
 
-    transitionTo(value, start, move, delta, epsilon) {
-        if(Math.abs(value - (start + move)) > epsilon)
-            value += Math.sign(move) * this.properties.speed;
-        else
+    transitionTo(value, start, move, delta) {
+
+        if (Math.sign(move) == 1 && value < (start + move)) {
+            value += this.properties.speed * delta;
+        }
+        else if (Math.sign(move) == -1 && value > (start + move)) {
+            value -= this.properties.speed * delta;
+        }
+        else {
             value = start + move;
+        }
 
         return value;
     }
